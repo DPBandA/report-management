@@ -4,6 +4,25 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
     
+    <converter>
+        <converter-id>reportConverter</converter-id>
+        <converter-class>jm.com.dpbennett.rm.converter.ReportConverter</converter-class>
+    </converter>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>reportTemplateDialog</from-outcome>
+            <to-view-id>/report/reportTemplateDialog.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>reportDatePeriodDialog</from-outcome>
+            <to-view-id>/report/reportDatePeriodDialog.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
         
     <managed-bean>
         <managed-bean-name>reportManager</managed-bean-name>

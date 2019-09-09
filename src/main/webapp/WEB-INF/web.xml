@@ -17,6 +17,14 @@
     </context-param>  
     
     <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>
+            /WEB-INF/faces-config-sm.xml, 
+            /WEB-INF/faces-config-rm.xml
+        </param-value>
+    </context-param>
+    
+    <context-param>
         <param-name>primefaces.LEGACY_WIDGET_NAMESPACE</param-name>
         <param-value>true</param-value>
     </context-param>
