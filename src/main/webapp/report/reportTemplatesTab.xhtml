@@ -1,5 +1,5 @@
 <!--
-Job Management & Tracking System (JMTS) 
+Report Management (RM) 
 Copyright (C) 2017  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ Email: info@dpbennett.com.jm
 
                 <p:ajax event="dialogReturn" 
                         listener="#{reportManager.doReportSearch}"
-                        update=":mainTabViewForm:mainTabView:centerTabView:dataListsTabView:reportsTable"/>
+                        update=":mainTabViewForm:mainTabView:reportsTable"/>
 
             </p:commandButton> 
             <p:spacer width="20" />
@@ -50,7 +50,7 @@ Email: info@dpbennett.com.jm
                         global="false"
                         onstart="PF('longProcessDialogVar').show();" 
                         oncomplete="PF('longProcessDialogVar').hide();"
-                        update=":mainTabViewForm:mainTabView:centerTabView:dataListsTabView:reportsTable"
+                        update=":mainTabViewForm:mainTabView:reportsTable"
                         listener="#{reportManager.doReportSearch}"
                         process="@this"/>
             </p:inputText>
@@ -62,7 +62,7 @@ Email: info@dpbennett.com.jm
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeReportsOnly"
                                          value="#{reportManager.isActiveReportsOnly}" >
-                    <p:ajax  update=":mainTabViewForm:mainTabView:centerTabView:dataListsTabView:reportsTable"
+                    <p:ajax  update=":mainTabViewForm:mainTabView:reportsTable"
                              listener="#{reportManager.doReportSearch}"
                              event="change"                                      
                              process="@this"/>
@@ -120,7 +120,7 @@ Email: info@dpbennett.com.jm
                 <f:setPropertyActionListener value="#{report}"                                                                    
                                              target="#{reportManager.currentReport}" />
                 <p:ajax event="dialogReturn" 
-                        update=":mainTabViewForm:mainTabView:centerTabView:dataListsTabView:reportsTable"/>
+                        update=":mainTabViewForm:mainTabView:reportsTable"/>
 
             </p:commandButton>           
         </p:column>

@@ -129,8 +129,12 @@ Email: info@dpbennett.com.jm
 
                         <p:tab title="#{t.name}" closable="true"  >
 
-                            <h:panelGroup  rendered="#{t.id == 'Financial Administration'}">
-                                <ui:include src="finance/financialAdminTab.xhtml" /> 
+                            <h:panelGroup rendered="#{t.id == 'Reports'}" >
+                                <ui:include src="report/reportsTab.xhtml" />                                                                
+                            </h:panelGroup>
+                            
+                            <h:panelGroup rendered="#{t.id == 'Report templates'}" >
+                                <ui:include src="report/reportTemplatesTab.xhtml" />                                                               
                             </h:panelGroup>
 
                             <h:panelGroup rendered="#{t.id == 'System Administration'}" >
@@ -191,10 +195,6 @@ Email: info@dpbennett.com.jm
                                 listener="#{systemManager.onDashboardTabChange}" />
 
                         <p:tab title="#{t.name}" > 
-
-                            <h:panelGroup rendered="#{t.id == 'Financial Administration'}">
-                                <ui:include src="dashboard/finance/financialAdminTab.xhtml" />
-                            </h:panelGroup>
 
                             <h:panelGroup rendered="#{t.id == 'System Administration'}">
                                 <ui:include src="dashboard/admin/generalAdminTab.xhtml" />

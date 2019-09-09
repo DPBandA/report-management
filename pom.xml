@@ -20,10 +20,22 @@
             <artifactId>system-management</artifactId>
             <version>0.1.0-SNAPSHOT</version>
             <type>war</type>
-        </dependency>             
+        </dependency>        
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>financial-management-lib</artifactId>
+            <artifactId>client-management</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>    
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>human-resource-management</artifactId>
+            <version>1.0.0</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>report-management-lib</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
@@ -57,6 +69,14 @@
                         <overlay>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>system-management</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>client-management</artifactId>
+                        </overlay>
+                        <overlay>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>human-resource-management</artifactId>
                         </overlay>
                     </overlays>
                 </configuration>
