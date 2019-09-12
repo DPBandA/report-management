@@ -14,7 +14,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>      
+    <dependencies>   
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>report-management-lib</artifactId>
+            <version>1.0.0</version>
+        </dependency> 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>system-management</artifactId>
@@ -32,11 +37,6 @@
             <artifactId>human-resource-management</artifactId>
             <version>1.0.0</version>
             <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>report-management-lib</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

@@ -41,7 +41,7 @@ Email: info@dpbennett.com.jm
         <ui:include src="admin/loginDialog.xhtml"/>   
         <ui:include src="common/generalAlertDialogs.xhtml"/>
         <ui:include src="common/longProcessDialog.xhtml"/>   
-        <ui:include src="common/preferencesDialog.xhtml"/> 
+        <ui:include src="hrm/preferencesDialog.xhtml"/> 
 
         <p:layout id="JMTSWeb" fullPage="true" widgetVar="layoutVar" >
             <p:ajax event="toggle" listener="#{systemManager.handleLayoutUnitToggle}" />
@@ -58,7 +58,7 @@ Email: info@dpbennett.com.jm
                         <p:graphicImage value="images/BSJ Logo - H41.png"/>
                         <h:panelGrid columns="1">   
 
-                            <h:outputText value="#{systemManager.applicationHeader}"
+                            <h:outputText value="#{reportManager.applicationHeader}"
                                           style="color: darkgrey; font-size: 14pt; font-weight: bold;" />
 
                             <h:outputText value="#{systemManager.applicationSubheader}"
@@ -198,6 +198,10 @@ Email: info@dpbennett.com.jm
 
                             <h:panelGroup rendered="#{t.id == 'System Administration'}">
                                 <ui:include src="dashboard/admin/generalAdminTab.xhtml" />
+                            </h:panelGroup>
+                            
+                            <h:panelGroup rendered="#{t.id == 'Report Management'}">
+                                <ui:include src="dashboard/report/reportTab.xhtml" />
                             </h:panelGroup>
 
                         </p:tab>   
