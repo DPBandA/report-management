@@ -1,3 +1,2 @@
 ### General
-- Impl dashboard:
-* Templates table not refreshing after new template is created.
+- Move the jasper reports from jmts to this module and see if they still work.

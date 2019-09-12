@@ -26,43 +26,39 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left">
             <p:menuButton value="New" >  
 
-                    <p:menuitem>                       
-                        <p:commandButton value="Report template"
-                                         style="width: 100%;text-align: left;background: none;border: 0;"
-                                         title="Create new report template"
-                                         icon="ui-icon-plus"
-                                         onstart="PF('longProcessDialogVar').show();" 
-                                         oncomplete="longProcessDialogVar.hide();"
-                                         actionListener="#{reportManager.createNewReport}" 
-                                         global="true"
-                                         process="@this" >
+                <p:menuitem>                       
+                    <p:commandButton value="Report template"
+                                     style="width: 100%;text-align: left;background: none;border: 0;"
+                                     update=":headerForm:growl3"
+                                     title="Create new report template"
+                                     icon="ui-icon-plus"
+                                     onstart="PF('longProcessDialogVar').show();" 
+                                     oncomplete="longProcessDialogVar.hide();"
+                                     actionListener="#{reportManager.createNewReport}" 
+                                     global="true"
+                                     process="@this" >
 
-                            <p:ajax event="dialogReturn" 
-                                    listener="#{reportManager.doReportSearch}"
-                                    update=":mainTabViewForm:mainTabView:reportsTable"/>
+                        <p:ajax event="dialogReturn" 
+                                listener="#{reportManager.doReportSearch}"
+                                update=":mainTabViewForm:mainTabView"/>
 
-                        </p:commandButton>          
-                    </p:menuitem>
+                    </p:commandButton>          
+                </p:menuitem>
 
             </p:menuButton>    
 
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
-
             <p:menuButton value="Tools" >  
-
-                <ui:remove>
-                    <p:menuitem>
-                        <p:commandButton value="Reports"
-                                         style="text-align: left;background: none;border: 0;"
-                                         title="Open the Reports tab"
-                                         onstart="PF('longProcessDialogVar').show();" 
-                                         actionListener="#{financeManager.openReportsTab}" 
-                                         oncomplete="longProcessDialogVar.hide();"
-                                         process="@this" />
-                    </p:menuitem>
-                </ui:remove>
-
+                <p:menuitem>
+                    <p:commandButton value="Reports"
+                                     style="text-align: left;background: none;border: 0;"
+                                     title="Open the Reports tab"
+                                     onstart="PF('longProcessDialogVar').show();" 
+                                     actionListener="#{reportManager.openReportsTab}" 
+                                     oncomplete="longProcessDialogVar.hide();"
+                                     process="@this" />
+                </p:menuitem>
             </p:menuButton>         
         </p:toolbarGroup>
     </p:toolbar>
