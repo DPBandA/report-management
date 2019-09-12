@@ -26,23 +26,23 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left">
             <p:menuButton value="New" >  
 
-                <ui:remove>
                     <p:menuitem>                       
-                        <p:commandButton value="Reports configuration"
+                        <p:commandButton value="Report template"
                                          style="width: 100%;text-align: left;background: none;border: 0;"
-                                         title="Create new system configuration"
+                                         title="Create new report template"
                                          icon="ui-icon-plus"
                                          onstart="PF('longProcessDialogVar').show();" 
                                          oncomplete="longProcessDialogVar.hide();"
-                                         actionListener="#{systemManager.createNewFinancialSystemOption}" 
+                                         actionListener="#{reportManager.createNewReport}" 
+                                         global="true"
                                          process="@this" >
 
                             <p:ajax event="dialogReturn" 
-                                    update=":mainTabViewForm:mainTabView:financialAdminTabView:financialSystemOptionsTable"/>
+                                    listener="#{reportManager.doReportSearch}"
+                                    update=":mainTabViewForm:mainTabView:reportsTable"/>
 
                         </p:commandButton>          
                     </p:menuitem>
-                </ui:remove>
 
             </p:menuButton>    
 

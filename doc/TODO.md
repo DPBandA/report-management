@@ -1,2 +1,3 @@
 ### General
-- Add report module fields to Modules and Privilege.
+- Impl dashboard:
+* Templates table not refreshing after new template is created.
