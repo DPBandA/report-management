@@ -49,6 +49,7 @@ Email: info@dpbennett.com.jm
 
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
+            
             <p:menuButton value="Tools" >  
                 <p:menuitem>
                     <p:commandButton value="Reports"
@@ -59,7 +60,18 @@ Email: info@dpbennett.com.jm
                                      oncomplete="longProcessDialogVar.hide();"
                                      process="@this" />
                 </p:menuitem>
-            </p:menuButton>         
+                
+                <p:menuitem>
+                    <p:commandButton value="Report templates"
+                                     style="text-align: left;background: none;border: 0;"
+                                     title="Open the Report Templates tab"
+                                     onstart="PF('longProcessDialogVar').show();" 
+                                     actionListener="#{reportManager.openReportTemplatesTab}" 
+                                     oncomplete="longProcessDialogVar.hide();"
+                                     process="@this" />
+                </p:menuitem>
+            </p:menuButton>             
+            
         </p:toolbarGroup>
     </p:toolbar>
 
