@@ -1,6 +1,11 @@
 ### General
-- Put menu items in tools menu to show the report templates.
-- Move the jasper reports from jmts to this module and see if they still work.
-- Implement export of latest monthly report.
+- Job entries without samples are not reflected in the monthly report's raw data.
 - Check out claim that the reports are not responding to parameter changes.
   Also check why last/this does not give the correct period.
+- Implement month report feature update in accordance with proforma, report template
+  and GA's email:
+  * Update Job class to contain the new fields according to the new monthly report format:
+    ~ Add the fields to the Job class for the number of services offered (eg noOfTrainings).
+      Export the first 2 rows of the report template as PDF for reference.
+  * Update the Job dialog to allow entry into the new fields.
+  * See GA's email and Github issues.
