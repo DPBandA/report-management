@@ -1,5 +1,7 @@
 ### General
-- Job entries without samples are not reflected in the monthly report's raw data.
+- Job entries without samples are not reflected in the monthly report's raw data:
+  * Setup a unit test in BEl and modify and test Job.getJobReportRecords()
+  * Use the method from one of the costing/invoice reports to get the job sample records.
 - Check out claim that the reports are not responding to parameter changes.
   Also check why last/this does not give the correct period.
 - Implement month report feature update in accordance with proforma, report template
@@ -8,4 +10,4 @@
     ~ Add the fields to the Job class for the number of services offered (eg noOfTrainings).
       Export the first 2 rows of the report template as PDF for reference.
   * Update the Job dialog to allow entry into the new fields.
-  * See GA's email and Github issues.
+  * See Github issues.
