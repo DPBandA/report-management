@@ -1,4 +1,5 @@
 ### General
+- See GitHub issues.
 - Job entries without samples are not reflected in the monthly report's raw data:
   * Setup a unit test in BEl and modify and test Job.getJobReportRecords()
   * Use the method from one of the costing/invoice reports to get the job sample records.
@@ -11,4 +12,6 @@
       Export the first 2 rows of the report template as PDF for reference.
   * Update the Job dialog to allow entry into the new fields.
   * See Github issues.
-- Remove code comment out of initDashboard() and initMainTabView() before deploment.
+- Remove code comment out of initDashboard() and initMainTabView() before deployment.
+
+### Release Notes (to be inserted into JMTS release notes)
