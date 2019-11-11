@@ -4,7 +4,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="2267"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BSJ MySQL JMTS.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BSJ JMTS MySQL"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -289,7 +289,7 @@ ORDER BY
 		<variableExpression><![CDATA[$F{job_NOOFTESTSORCALIBRATIONS}]]></variableExpression>
 	</variable>
 	<title>
-		<band height="75" splitType="Stretch">
+		<band height="83" splitType="Stretch">
 			<image>
 				<reportElement x="1" y="8" width="170" height="42" uuid="51d1b3d6-34c3-4f8f-a0a3-b8d34a7be147"/>
 				<imageExpression><![CDATA["C:/jasperreports/BSJ Logo - H41.png"]]></imageExpression>

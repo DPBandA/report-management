@@ -11,3 +11,4 @@
       Export the first 2 rows of the report template as PDF for reference.
   * Update the Job dialog to allow entry into the new fields.
   * See Github issues.
+- Remove code comment out of initDashboard() and initMainTabView() before deploment.

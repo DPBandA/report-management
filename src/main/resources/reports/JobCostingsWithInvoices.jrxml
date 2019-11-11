@@ -4,7 +4,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="2267"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BSJ JMTS MySQL"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BSJ MySQL JMTS.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
@@ -197,7 +197,7 @@ ORDER BY
 		<band height="55" splitType="Stretch">
 			<image>
 				<reportElement x="1" y="8" width="170" height="42" uuid="51d1b3d6-34c3-4f8f-a0a3-b8d34a7be147"/>
-				<imageExpression><![CDATA["F:\\jasperreports\\BSJ Logo - H41.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:/jasperreports/BSJ Logo - H41.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="176" y="8" width="266" height="42" uuid="e4d5de4a-75f4-476e-a6cc-87671a899f43"/>
