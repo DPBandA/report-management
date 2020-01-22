@@ -4,7 +4,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AppSrvDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BSJ JMTS MySQL"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="315"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="676"/>
@@ -165,7 +165,7 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[Clients Served by Departments]]></text>
 			</staticText>
-			<textField pattern="MMM d, yyyy">
+			<textField pattern="MMM dd, yyyy">
 				<reportElement x="190" y="27" width="113" height="29" isRemoveLineWhenBlank="true" uuid="1ad2b5ad-1b45-4d16-82e4-e00083a0e8ca"/>
 				<textElement>
 					<font fontName="SansSerif" size="14" isBold="true"/>
@@ -179,8 +179,8 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[to]]></text>
 			</staticText>
-			<textField pattern="MMM d, yyyy">
-				<reportElement x="330" y="27" width="113" height="29" isRemoveLineWhenBlank="true" uuid="7a21a6ad-e4a3-4a5a-a6b0-daca699a60db"/>
+			<textField pattern="MMM dd, yyyy">
+				<reportElement x="332" y="27" width="178" height="29" isRemoveLineWhenBlank="true" uuid="75423a7c-1132-4046-b08c-161a182ac93c"/>
 				<textElement>
 					<font fontName="SansSerif" size="14" isBold="true"/>
 				</textElement>
@@ -294,7 +294,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$F{internet_EMAIL1}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-					<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="363" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="97cc292b-2107-4ef0-bf74-04ae30548595"/>
+					<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="364" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="97cc292b-2107-4ef0-bf74-04ae30548595"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
 					</textElement>
