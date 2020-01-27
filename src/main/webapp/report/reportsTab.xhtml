@@ -57,7 +57,7 @@ Email: info@dpbennett.com.jm
                                     itemValue="#{report}"
                                     itemLabel="#{report.name}"
                                     converter="reportConverter"
-                                    completeMethod="#{reportManager.completeReportByCategory}" >
+                                    completeMethod="#{reportManager.completeReportByCategoryAndName}" >
 
                         <p:ajax event="itemSelect"
                                 listener="#{reportManager.updateReport}"
@@ -67,7 +67,7 @@ Email: info@dpbennett.com.jm
                                 process="@this" />
 
                     </p:autoComplete>
-                    <p:watermark value="select a report" for="report" />
+                    <p:watermark value="find/select a report" for="report" />
                 </h:panelGroup>
 
                 <h:outputLabel value="Description:" />
