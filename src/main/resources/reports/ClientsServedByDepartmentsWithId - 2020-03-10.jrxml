@@ -19,10 +19,10 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="startOfPeriod1" class="java.util.Date">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2019-01-01")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="endOfPeriod1" class="java.util.Date">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-31")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -69,7 +69,7 @@ OR  department.`NAME` LIKE '%Civil%'
 OR  department.`NAME` LIKE '%Industrial%'
 OR  department.`NAME` LIKE '%National Certification%')
 
-GROUP BY client.`ID`, address.`ID`, contact.`ID`
+GROUP BY address.`ADDRESSLINE1`
 
 ORDER BY
      department.`NAME`,

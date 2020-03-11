@@ -9,6 +9,11 @@
         <converter-class>jm.com.dpbennett.rm.converter.ReportConverter</converter-class>
     </converter>
     
+     <converter>
+        <converter-id>activeReportConverter</converter-id>
+        <converter-class>jm.com.dpbennett.rm.converter.ActiveReportConverter</converter-class>
+    </converter>
+    
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>

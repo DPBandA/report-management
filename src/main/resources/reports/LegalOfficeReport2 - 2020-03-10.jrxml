@@ -4,10 +4,9 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AppSrvDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="319"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="681"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="particularsStyle" mode="Transparent" fill="Solid" hTextAlign="Left" hImageAlign="Left" vTextAlign="Top" vImageAlign="Top" markup="none" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$F{legaldocument_STRATEGICPRIORITY}.toString().trim().equals("# 1")]]></conditionExpression>
@@ -38,20 +37,10 @@
 	</style>
 	<style name="reportTitleStyle" hTextAlign="Center" fontSize="16" isBold="true"/>
 	<parameter name="reportTitle" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Legal Office Monthly Report"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["Legal Office Monthly Report for the period 1 to 31 January 2018 - Request by Category"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="startOfPeriod1" class="java.util.Date">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-01")]]></defaultValueExpression>
-	</parameter>
-	<parameter name="endOfPeriod1" class="java.util.Date">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-29")]]></defaultValueExpression>
-	</parameter>
-	<parameter name="dateField1" class="java.lang.String">
-		<defaultValueExpression><![CDATA["dateReceived"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="table1" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["legaldocument"]]></defaultValueExpression>
-	</parameter>
+	<parameter name="startOfPeriod1" class="java.util.Date"/>
+	<parameter name="endOfPeriod1" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[SELECT legaldocument.`ID` AS legaldocument_ID,
 	legaldocument.`NUMBER` AS legaldocument_NUMBER,
@@ -62,22 +51,22 @@
 	legaldocument.`DATEOFCOMPLETION` AS legaldocument_DATEOFCOMPLETION,
 	legaldocument.`SUBMITTEDBY_ID` AS legaldocument_SUBMITTEDBY_ID,
 	legaldocument.`GOAL` AS legaldocument_GOAL,
-	legaldocument.`STRATEGICPRIORITY` AS legaldocument_STRATEGICPRIORITY, 
+	jmts.legaldocument.`STRATEGICPRIORITY` AS legaldocument_STRATEGICPRIORITY, 
 	employee.`ID` AS employee_ID,
 	employee.`LASTNAME` AS employee_LASTNAME,
 	legaldocument.`TYPE_ID` AS legaldocument_TYPE_ID,
 	employee.`FIRSTNAME` AS employee_FIRSTNAME,
 	legaldocument.`DATERECEIVED` AS legaldocument_DATERECEIVED,
-	documenttype.`ID`,
-	documenttype.`NAME`
+	jmts.documenttype.`ID`,
+	jmts.documenttype.`NAME`
 FROM employee employee
 	INNER JOIN legaldocument ON 
 	 legaldocument.`SUBMITTEDBY_ID` = employee.`ID` 
-	INNER JOIN documenttype ON 
-	 documenttype.`ID` = legaldocument.`TYPE_ID` 
+	INNER JOIN jmts.documenttype ON 
+	 jmts.documenttype.`ID` = legaldocument.`TYPE_ID` 
 WHERE 
-	 $P!{table1}.$P!{dateField1} >= $P{startOfPeriod1} 
-	 AND  $P!{table1}.$P!{dateField1} <= $P{endOfPeriod1} 
+	 legaldocument.`DATERECEIVED` >= $P{startOfPeriod1} 
+	 AND legaldocument.`DATERECEIVED` <= $P{endOfPeriod1} 
 ORDER BY legaldocument.`TYPE_ID` DESC]]>
 	</queryString>
 	<field name="legaldocument_ID" class="java.lang.Long">

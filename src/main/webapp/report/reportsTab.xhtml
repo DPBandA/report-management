@@ -56,7 +56,7 @@ Email: info@dpbennett.com.jm
                                     title="#{reportManager.selectedReport.description}"
                                     itemValue="#{report}"
                                     itemLabel="#{report.name}"
-                                    converter="reportConverter"
+                                    converter="activeReportConverter"
                                     completeMethod="#{reportManager.completeReportByCategoryAndName}" >
 
                         <p:ajax event="itemSelect"
