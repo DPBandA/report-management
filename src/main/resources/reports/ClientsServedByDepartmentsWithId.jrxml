@@ -45,7 +45,8 @@
      jobstatusandtracking.`DATESUBMITTED` AS jobstatusandtracking_DATESUBMITTED,
      client. `ACCOUNTINGID` AS accounting_ID
 FROM
-     `client` client INNER JOIN `client_address` client_address ON client.`ID` = client_address.`Client_ID`
+     `client` client 
+     INNER JOIN `client_address` client_address ON client.`ID` = client_address.`Client_ID`
      INNER JOIN `address` address ON client_address.`addresses_ID` = address.`ID`
      INNER JOIN `client_contact` client_contact ON client.`ID` = client_contact.`Client_ID`
      INNER JOIN `job` job ON client.`ID` = job.`CLIENT_ID`
