@@ -57,6 +57,7 @@
      department.`NAME` AS department_NAME,
      CASE WHEN  department_A.`NAME` = '--' THEN 'N/A' ELSE  department_A.`NAME` END AS department_A_NAME,
      CASE WHEN   jobcostingandpayment.`INVOICED` = 1 THEN 'Yes' ELSE 'No' END AS costing_INVOICED,
+     CASE WHEN   jobstatusandtracking.`DATECOSTINGINVOICED` >= $P{startOfPeriod1} AND jobstatusandtracking.`DATECOSTINGINVOICED` <= $P{endOfPeriod1} THEN 'Yes' ELSE 'No' END AS costing_INVOICED_IN_PERIOD,
      CASE WHEN  jmts.jobcostingandpayment.`COSTINGCOMPLETED` = 1 THEN 'Yes' ELSE 'No' END AS costing_COSTINGCOMPLETED,
      CASE WHEN  jmts.jobcostingandpayment.`COSTINGAPPROVED`  = 1 THEN 'Yes' ELSE 'No' END AS costing_COSTINGAPPROVED,
      department_A.`JOBCOSTINGTYPE` AS department_A_JOBCOSTINGTYPE,
@@ -175,6 +176,9 @@ ORDER BY
 	<field name="costing_INVOICED" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="costing_INVOICED"/>
 	</field>
+	<field name="costing_INVOICED_IN_PERIOD" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="costing_INVOICED_IN_PERIOD"/>
+	</field>
 	<field name="costing_COSTINGCOMPLETED" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="costing_COSTINGCOMPLETED"/>
 	</field>
@@ -218,11 +222,11 @@ ORDER BY
 				<imageExpression><![CDATA["C:/jasperreports/BSJ Logo - H41.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="190" y="17" width="315" height="24" uuid="e4d5de4a-75f4-476e-a6cc-87671a899f43"/>
+				<reportElement x="190" y="17" width="390" height="24" uuid="e4d5de4a-75f4-476e-a6cc-87671a899f43"/>
 				<textElement textAlignment="Left" markup="none">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Job Approval and Invoicing]]></text>
+				<text><![CDATA[Job Costing Approval and Invoicing]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -348,14 +352,14 @@ ORDER BY
 			</textField>
 			<textField pattern="####.00#" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="935" y="0" width="145" height="18" uuid="f1dd9d0f-3c45-4c2d-b19d-fd5306ebe94b"/>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jobcostingandpayment_FINALCOST}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="1240" y="0" width="160" height="18" uuid="4c9c78f3-52f1-414c-a633-986ff23c6cda"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Right">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jobstatusandtracking_DATECOSTINGAPPROVED}]]></textFieldExpression>
@@ -365,25 +369,25 @@ ORDER BY
 				<textElement textAlignment="Left">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{costing_INVOICED}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{costing_INVOICED_IN_PERIOD}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="Float" x="1732" y="0" width="160" height="18" uuid="787b682f-1c98-4949-8d40-138fcf738664"/>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jobcostingandpayment_PAYMENTRECEIVEDTODAT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="1080" y="0" width="160" height="18" uuid="cc731dd2-983c-4094-bd53-f6912f3cb59c"/>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jobstatusandtracking_COSTINGDATE}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="1400" y="0" width="152" height="18" uuid="5550ad6c-d921-4017-bb4b-dc93e1a318ce"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Right">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jobstatusandtracking_DATECOSTINGINVOICED}]]></textFieldExpression>
@@ -418,7 +422,7 @@ ORDER BY
 				<textElement textAlignment="Right">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Submission start date:]]></text>
+				<text><![CDATA[Approval start date:]]></text>
 			</staticText>
 			<textField pattern="MMM dd, yyyy">
 				<reportElement x="171" y="70" width="271" height="20" isRemoveLineWhenBlank="true" uuid="42fe2076-fffd-4ba6-81ee-09b9d464f6d2"/>
@@ -439,7 +443,7 @@ ORDER BY
 				<textElement textAlignment="Right">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Submission end date:]]></text>
+				<text><![CDATA[Approval end date:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="30" width="160" height="20" uuid="122a37ee-2348-4288-91f1-b02afe2adab9"/>
