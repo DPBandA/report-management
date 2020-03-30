@@ -243,7 +243,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{client_NAME}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="709" y="0" width="231" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0432cfc8-afb0-4c3e-b9a5-01e5d2281a2d"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -251,7 +251,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{contact_FIRSTNAME} + " " +  $F{contact_LASTNAME}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="496" y="0" width="213" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="938b981a-e048-49b9-ac2d-af4995eb1800"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -261,7 +261,7 @@ ORDER BY
 + " " + $F{address_CITY} + " "
 + ($F{address_STATEORPROVINCE} == null ? " " : $F{address_STATEORPROVINCE})]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="940" y="0" width="433" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="923e6101-b40e-4b5b-a11a-dd43aa126eb2"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -269,7 +269,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{phonenumber_LOCALNUMBER}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="1373" y="0" width="318" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b7a99667-8385-4c10-96fc-73df1d16f632"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
