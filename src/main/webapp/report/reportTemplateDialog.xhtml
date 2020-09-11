@@ -140,12 +140,12 @@ Email: info@dpbennett.com.jm
                 <p:tab  title="Parameters" >
                     <p:panel header="Date period" style="margin-top: 1px;margin-bottom: 1px;">
                         <h:panelGrid columns="4" cellpadding="5">
-                            
+
                             <p:outputLabel for="datePeriodRequired" value="Required:" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="datePeriodRequired"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.datePeriodRequired}" />
-                            
+
                             <p:outputLabel for="showDateField" value="Show date field:" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="showDateField"
                                                      style="vertical-align: middle"
@@ -204,40 +204,34 @@ Email: info@dpbennett.com.jm
 
                             <p:column style="width:32px" >
                                 <p:menuButton icon="ui-icon-pencil" title="Edit or delete date period">
-                                    <p:menuitem>                       
-                                        <p:commandButton value="Edit"
-                                                         icon="ui-icon-pencil" 
-                                                         style="width: 300%;text-align: left;background: none;border: 0;"
-                                                         onstart="PF('longProcessDialogVar').show();"   
-                                                         oncomplete="PF('longProcessDialogVar').hide();"                                  
-                                                         actionListener="#{reportManager.editDatePeriod}"  
-                                                         process="@this"                             
-                                                         title="View or edit this date period's detail">  
+                                    <p:menuitem value="Edit"
+                                                icon="ui-icon-pencil" 
+                                                onstart="PF('longProcessDialogVar').show();"   
+                                                oncomplete="PF('longProcessDialogVar').hide();"                                  
+                                                actionListener="#{reportManager.editDatePeriod}"  
+                                                process="@this"                             
+                                                title="View or edit this date period's detail">  
 
-                                            <f:setPropertyActionListener value="#{datePeriod}"
-                                                                         target="#{reportManager.selectedDatePeriod}" />
+                                        <f:setPropertyActionListener value="#{datePeriod}"
+                                                                     target="#{reportManager.selectedDatePeriod}" />
 
-                                            <p:ajax event="dialogReturn" 
-                                                    update="datePeriodsTable"/>
+                                        <p:ajax event="dialogReturn" 
+                                                update="datePeriodsTable"/>
 
-                                        </p:commandButton>            
                                     </p:menuitem>
 
-                                    <p:menuitem >       
-                                        <p:commandButton 
-                                            value="Delete"
-                                            icon="ui-icon-trash" 
-                                            style="width: 300%;text-align: left;background: none;border: 0;"
-                                            onstart="PF('longProcessDialogVar').show();"    
-                                            oncomplete="PF('longProcessDialogVar').hide();"                                            
-                                            process="@this"
-                                            update="datePeriodsTable"
-                                            title="Delete this date period">
+                                    <p:menuitem  
+                                        value="Delete"
+                                        icon="ui-icon-trash" 
+                                        onstart="PF('longProcessDialogVar').show();"    
+                                        oncomplete="PF('longProcessDialogVar').hide();"                                            
+                                        process="@this"
+                                        update="datePeriodsTable"
+                                        title="Delete this date period">
 
-                                            <f:setPropertyActionListener value="#{datePeriod}"
-                                                                         target="#{reportManager.datePeriodToDelete}" />
+                                        <f:setPropertyActionListener value="#{datePeriod}"
+                                                                     target="#{reportManager.datePeriodToDelete}" />
 
-                                        </p:commandButton>
                                     </p:menuitem>
                                 </p:menuButton>    
                             </p:column>

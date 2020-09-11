@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Copyright (C) 2020  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -26,52 +26,44 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left">
             <p:menuButton value="New" >  
 
-                <p:menuitem>                       
-                    <p:commandButton value="Report template"
-                                     style="width: 100%;text-align: left;background: none;border: 0;"
-                                     update=":headerForm:growl3"
-                                     title="Create new report template"
-                                     icon="ui-icon-plus"
-                                     onstart="PF('longProcessDialogVar').show();" 
-                                     oncomplete="longProcessDialogVar.hide();"
-                                     actionListener="#{reportManager.createNewReport}" 
-                                     global="true"
-                                     process="@this" >
+                <p:menuitem value="Report template"
+                            update=":headerForm:growl3"
+                            title="Create new report template"
+                            icon="ui-icon-plus"
+                            onstart="PF('longProcessDialogVar').show();" 
+                            oncomplete="longProcessDialogVar.hide();"
+                            actionListener="#{reportManager.createNewReport}" 
+                            global="true"
+                            process="@this" >
 
-                        <p:ajax event="dialogReturn" 
-                                listener="#{reportManager.doReportSearch}"
-                                update=":mainTabViewForm:mainTabView"/>
+                    <p:ajax event="dialogReturn" 
+                            listener="#{reportManager.doReportSearch}"
+                            update=":mainTabViewForm:mainTabView"/>
 
-                    </p:commandButton>          
                 </p:menuitem>
 
             </p:menuButton>    
 
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
-            
+
             <p:menuButton value="Tools" >  
-                <p:menuitem>
-                    <p:commandButton value="Reports"
-                                     style="text-align: left;background: none;border: 0;"
-                                     title="Open the Reports tab"
-                                     onstart="PF('longProcessDialogVar').show();" 
-                                     actionListener="#{reportManager.openReportsTab}" 
-                                     oncomplete="longProcessDialogVar.hide();"
-                                     process="@this" />
-                </p:menuitem>
-                
-                <p:menuitem>
-                    <p:commandButton value="Report Templates"
-                                     style="text-align: left;background: none;border: 0;"
-                                     title="Open the Report Templates tab"
-                                     onstart="PF('longProcessDialogVar').show();" 
-                                     actionListener="#{reportManager.openReportTemplatesTab}" 
-                                     oncomplete="longProcessDialogVar.hide();"
-                                     process="@this" />
-                </p:menuitem>
+                <p:menuitem value="Reports"
+                            title="Open the Reports tab"
+                            onstart="PF('longProcessDialogVar').show();" 
+                            actionListener="#{reportManager.openReportsTab}" 
+                            oncomplete="longProcessDialogVar.hide();"
+                            process="@this" />
+
+                <p:menuitem value="Report Templates"
+                            title="Open the Report Templates tab"
+                            onstart="PF('longProcessDialogVar').show();" 
+                            actionListener="#{reportManager.openReportTemplatesTab}" 
+                            oncomplete="longProcessDialogVar.hide();"
+                            process="@this" />
+
             </p:menuButton>             
-            
+
         </p:toolbarGroup>
     </p:toolbar>
 
