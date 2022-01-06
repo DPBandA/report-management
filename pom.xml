@@ -4,10 +4,10 @@
 
     <groupId>jm.com.dpbennett</groupId>
     <artifactId>report-management</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <packaging>war</packaging>
 
-    <name>Report Management</name>
+    <name>RM, v2</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -18,12 +18,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>report-management-lib</artifactId>
-            <version>1.0.0</version>
+            <version>2.0.0</version>
         </dependency> 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>system-management</artifactId>
-            <version>1.0.0</version>
+            <version>2.0.0</version>
             <type>war</type>
         </dependency>        
         <dependency>
