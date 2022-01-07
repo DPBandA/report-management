@@ -27,7 +27,6 @@ Email: info@dpbennett.com.jm
             <p:menuButton value="New" >  
 
                 <p:menuitem value="Report template"
-                            update=":headerForm:growl3"
                             title="Create new report template"
                             icon="pi pi-plus"
                             actionListener="#{reportManager.createNewReport}" 
@@ -48,11 +47,13 @@ Email: info@dpbennett.com.jm
             <p:menuButton value="Tools" >  
                 <p:menuitem value="Reports"
                             title="Open the Reports tab"
+                            icon="pi pi-chart-bar"
                             actionListener="#{reportManager.openReportsTab}" 
                             process="@this" />
 
                 <p:menuitem value="Report Templates"
                             title="Open the Report Templates tab"
+                            icon="pi pi-book"
                             actionListener="#{reportManager.openReportTemplatesTab}" 
                             process="@this" />
 

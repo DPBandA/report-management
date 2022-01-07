@@ -25,13 +25,13 @@ Email: info@dpbennett.com.jm
     <p:toolbar>
         <p:toolbarGroup align="left">
             <p:commandButton value="Close"
-                             actionListener="#{reportManager.closeReportsTab}"
+                            actionListener="#{reportManager.closeReportsTab}"
                              icon="pi pi-times" />
             <p:spacer width="10" />
             <p:commandButton value="Export"
                              id="export1"
+                             icon="pi pi-download"
                              ajax="false"
-                             style="width: 150px"
                              immediate="true"
                              disabled="#{reportManager.isInvalidReport}" >
                 

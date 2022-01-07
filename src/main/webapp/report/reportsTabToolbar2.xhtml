@@ -26,16 +26,14 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left">
             <p:commandButton value="Close"
                              actionListener="#{reportManager.closeReportsTab}"
-                             icon="ui-icon ui-icon-close" />
+                             icon="pi pi-times" />
             <p:spacer width="10" />
             <p:commandButton value="Export"
                              id="export2"
                              ajax="false"
-                             style="width: 150px"
+                             icon="pi pi-download"
                              immediate="true"
-                             disabled="#{reportManager.isInvalidReport}"
-                             update="longProgressDialogForm3"
-                             onclick="longProcessDialogVar3.show();" >
+                             disabled="#{reportManager.isInvalidReport}" >
                 
                 <p:fileDownload value="#{reportManager.reportFile}" />
                 
