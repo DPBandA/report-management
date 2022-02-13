@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clients Served by Departments" pageWidth="2400" pageHeight="595" orientation="Landscape" columnWidth="2360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="1cda2bef-1062-41dd-abde-2d67ef351d32">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AppSrvDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Local MySQL"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="315"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="676"/>
@@ -23,6 +23,9 @@
 	</parameter>
 	<parameter name="endOfPeriod1" class="java.util.Date">
 		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2019-12-31")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoURL" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["http://localhost:8080/img/DPB%20PNG%20Logo%20Square.png"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -157,7 +160,7 @@ ORDER BY
 		<band height="83" splitType="Stretch">
 			<image>
 				<reportElement x="1" y="8" width="170" height="42" uuid="e894b147-90b7-4b92-95e8-5684b75f68cb"/>
-				<imageExpression><![CDATA["C:/jasperreports/BSJ Logo - H41.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logoURL}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="190" y="2" width="490" height="24" uuid="0a9de776-2460-4a31-bf48-236571763bba"/>
@@ -253,14 +256,14 @@ ORDER BY
 		<band height="18" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="2350" height="18" uuid="33e7ddf2-1de6-4301-a2e2-c6a51be75a09"/>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="510" y="0" width="132" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="ef99faed-6c45-41ad-8c29-4bea78f09886"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{accounting_ID}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="855" y="0" width="231" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0432cfc8-afb0-4c3e-b9a5-01e5d2281a2d"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -268,7 +271,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{contact_FIRSTNAME} + " " +  $F{contact_LASTNAME}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="642" y="0" width="213" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="938b981a-e048-49b9-ac2d-af4995eb1800"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -278,7 +281,7 @@ ORDER BY
 + " " + $F{address_CITY} + " "
 + ($F{address_STATEORPROVINCE} == null ? " " : $F{address_STATEORPROVINCE})]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="1086" y="0" width="433" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="923e6101-b40e-4b5b-a11a-dd43aa126eb2"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -286,7 +289,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{phonenumber_LOCALNUMBER}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="1519" y="0" width="318" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b7a99667-8385-4c10-96fc-73df1d16f632"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -294,14 +297,14 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{internet_EMAIL1}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="363" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="97cc292b-2107-4ef0-bf74-04ae30548595"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{department_NAME}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="363" y="0" width="147" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="80246489-8dee-47b8-a2f8-75dd5d83dbea"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
