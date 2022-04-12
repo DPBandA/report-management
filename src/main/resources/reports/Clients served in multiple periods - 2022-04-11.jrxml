@@ -39,22 +39,22 @@
 	</style>
 	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
 	<parameter name="startOfPeriod1" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2016-04-01")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-01")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="endOfPeriod1" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2017-03-31")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2015-03-31")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="startOfPeriod2" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2017-04-01")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2015-04-01")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="endOfPeriod2" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2018-03-31")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2016-03-31")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="startOfPeriod3" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2018-04-01")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2016-04-01")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="endOfPeriod3" class="java.util.Date" isForPrompting="false">
-		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-31")]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2017-03-31")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="startOfPeriod4" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2019-04-01")]]></defaultValueExpression>
@@ -83,99 +83,69 @@
 	<parameter name="period5Label" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["2020-2021"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="department1" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Industrial Training Unit"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department2" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Electrical & Electronic Engineering"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department3" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Mechanical Engineering"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department4" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Microbiology"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department5" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Civil Engineering"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department6" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Non-Metallic Materials"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department7" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Packaging, Non-metallic & Furniture"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department8" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Technical Information Centre"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="department9" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Chemistry"]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     classification.`ID`  AS classification_ID,
+     jobsubcategory.`SubCategory`  AS jobsubcategory_SubCategory,
      CASE 
-     WHEN(jobstatusandtracking.`DATESUBMITTED` >=$P{startOfPeriod1}AND jobstatusandtracking.`DATESUBMITTED` <=$P{endOfPeriod1}) THEN $P{period1Label}
-     WHEN(jobstatusandtracking.`DATESUBMITTED` >=$P{startOfPeriod2}AND jobstatusandtracking.`DATESUBMITTED` <=$P{endOfPeriod2}) THEN $P{period2Label}
-     WHEN(jobstatusandtracking.`DATESUBMITTED` >=$P{startOfPeriod3}AND jobstatusandtracking.`DATESUBMITTED` <=$P{endOfPeriod3}) THEN $P{period3Label}
-     WHEN(jobstatusandtracking.`DATESUBMITTED` >=$P{startOfPeriod4}AND jobstatusandtracking.`DATESUBMITTED` <=$P{endOfPeriod4}) THEN $P{period4Label}
-     WHEN(jobstatusandtracking.`DATESUBMITTED` >=$P{startOfPeriod5}AND jobstatusandtracking.`DATESUBMITTED` <=$P{endOfPeriod5}) THEN $P{period5Label}
+     WHEN(jobstatusandtracking.`DATEOFCOMPLETION` >=$P{startOfPeriod1}AND jobstatusandtracking.`DATEOFCOMPLETION` <=$P{endOfPeriod1}) THEN $P{period1Label}
+     WHEN(jobstatusandtracking.`DATEOFCOMPLETION` >=$P{startOfPeriod2}AND jobstatusandtracking.`DATEOFCOMPLETION` <=$P{endOfPeriod2}) THEN $P{period2Label}
+     WHEN(jobstatusandtracking.`DATEOFCOMPLETION` >=$P{startOfPeriod3}AND jobstatusandtracking.`DATEOFCOMPLETION` <=$P{endOfPeriod3}) THEN $P{period3Label}
+     WHEN(jobstatusandtracking.`DATEOFCOMPLETION` >=$P{startOfPeriod4}AND jobstatusandtracking.`DATEOFCOMPLETION` <=$P{endOfPeriod4}) THEN $P{period4Label}
+     WHEN(jobstatusandtracking.`DATEOFCOMPLETION` >=$P{startOfPeriod4}AND jobstatusandtracking.`DATEOFCOMPLETION` <=$P{endOfPeriod5}) THEN $P{period5Label}
      END AS Date_Period,
-     department.`NAME` AS department_NAME,
-     client.`NAME` AS client_NAME
+     SUM(jobcostingandpayment.`FINALCOST`) AS Earnings,
+     department.`SUBGROUPCODE` AS department_SUBGROUPCODE,
+     department.`NAME` AS department_NAME
 FROM
      `department` department INNER JOIN `job` job ON department.`ID` = job.`DEPARTMENT_ID`
-     INNER JOIN `classification` classification ON job.`CLASSIFICATION_ID` = classification.`ID`
+     INNER JOIN `jobsubcategory` jobsubcategory ON job.`JOBSUBCATEGORY_ID` = jobsubcategory.`ID`
      INNER JOIN `jobstatusandtracking` jobstatusandtracking ON job.`JOBSTATUSANDTRACKING_ID` = jobstatusandtracking.`ID`
-     INNER JOIN `client` client ON job.`CLIENT_ID` = client.`ID`
+     INNER JOIN `jobcostingandpayment` jobcostingandpayment ON job.`JOBCOSTINGANDPAYMENT_ID` = jobcostingandpayment.`ID`
+     INNER JOIN `department` department_A ON job.`SUBCONTRACTEDDEPARTMENT_ID` = department_A.`ID`
 WHERE
- ((jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod1}
- AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod1})
-  OR (jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod2}
- AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod2})
-  OR (jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod3}
- AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod3})
- OR (jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod4}
- AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod4})
-  OR (jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod5}
- AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod5}))
- AND classification.`IsEarning` = 1
- AND department.`name` <> "--"
- AND (department.`name` = '$P!{department1}'
- 	OR department.`name` = '$P!{department2}'
- 	OR department.`name` = '$P!{department3}'
- 	OR department.`name` = '$P!{department4}'
- 	OR department.`name` = '$P!{department5}'
- 	OR department.`name` = '$P!{department6}'
- 	OR department.`name` = '$P!{department7}'
- 	OR department.`name` = '$P!{department8}'
- 	OR department.`name` = '$P!{department9}'
- )
- AND jobstatusandtracking.`workProgress` <> "Cancelled"
+ ((jobstatusandtracking.`DATEOFCOMPLETION` >= $P{startOfPeriod1}
+ AND jobstatusandtracking.`DATEOFCOMPLETION` <= $P{endOfPeriod1})
+  OR (jobstatusandtracking.`DATEOFCOMPLETION` >= $P{startOfPeriod2}
+ AND jobstatusandtracking.`DATEOFCOMPLETION` <= $P{endOfPeriod2})
+  OR (jobstatusandtracking.`DATEOFCOMPLETION` >= $P{startOfPeriod3}
+ AND jobstatusandtracking.`DATEOFCOMPLETION` <= $P{endOfPeriod3})
+ OR (jobstatusandtracking.`DATEOFCOMPLETION` >= $P{startOfPeriod4}
+ AND jobstatusandtracking.`DATEOFCOMPLETION` <= $P{endOfPeriod4})
+  OR (jobstatusandtracking.`DATEOFCOMPLETION` >= $P{startOfPeriod5}
+ AND jobstatusandtracking.`DATEOFCOMPLETION` <= $P{endOfPeriod5}))
+ AND jobsubcategory.`IsEarning` = 1
+ AND jobsubcategory.`active` = 1
+ AND (department_A.`SUBGROUPCODE` = 0 OR department_A.`SUBGROUPCODE` IS NULL)
 GROUP BY
- 	client_NAME,
- 	Date_Period    
+     Date_Period,
+     jobsubcategory_SubCategory
 ORDER BY
      department_NAME ASC,
+     jobsubcategory_SubCategory ASC,
      Date_Period ASC]]>
 	</queryString>
-	<field name="classification_ID" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.name" value="ID"/>
-		<property name="com.jaspersoft.studio.field.label" value="classification_ID"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="classification"/>
+	<field name="jobsubcategory_SubCategory" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SubCategory"/>
+		<property name="com.jaspersoft.studio.field.label" value="jobsubcategory_SubCategory"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="jobsubcategory"/>
 	</field>
 	<field name="Date_Period" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Date_Period"/>
 		<property name="com.jaspersoft.studio.field.label" value="Date_Period"/>
 	</field>
+	<field name="Earnings" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="Earnings"/>
+		<property name="com.jaspersoft.studio.field.label" value="Earnings"/>
+	</field>
+	<field name="department_SUBGROUPCODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SUBGROUPCODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="department_SUBGROUPCODE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
+	</field>
 	<field name="department_NAME" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
 		<property name="com.jaspersoft.studio.field.label" value="department_NAME"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="department"/>
-	</field>
-	<field name="client_NAME" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
-		<property name="com.jaspersoft.studio.field.label" value="client_NAME"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="client"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -194,7 +164,7 @@ ORDER BY
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Clients Served in Periods]]></text>
+				<text><![CDATA[Clients Served in Multiple Periods]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -222,9 +192,9 @@ ORDER BY
 						</staticText>
 					</cellContents>
 				</crosstabHeaderCell>
-				<rowGroup name="department_NAME" width="197" totalPosition="End">
+				<rowGroup name="jobsubcategory_SubCategory" width="197" totalPosition="End">
 					<bucket class="java.lang.String">
-						<bucketExpression><![CDATA[$F{department_NAME}]]></bucketExpression>
+						<bucketExpression><![CDATA[$F{jobsubcategory_SubCategory}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
 						<cellContents backcolor="#F0F8FF" mode="Opaque">
@@ -233,10 +203,10 @@ ORDER BY
 							</box>
 							<textField>
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="197" height="25" uuid="e46298a4-de60-4a9a-8e3d-abf8e53b79c8"/>
-								<textElement verticalAlignment="Middle">
+								<textElement>
 									<font isBold="true"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{department_NAME}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{jobsubcategory_SubCategory}]]></textFieldExpression>
 							</textField>
 						</cellContents>
 					</crosstabRowHeader>
@@ -266,9 +236,6 @@ ORDER BY
 							</box>
 							<textField>
 								<reportElement style="Crosstab Data Text" x="0" y="0" width="119" height="30" uuid="5bc97b80-ceb2-4610-b45b-4c880273a5bd"/>
-								<textElement verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
 								<textFieldExpression><![CDATA[$V{Date_Period}]]></textFieldExpression>
 							</textField>
 						</cellContents>
@@ -288,30 +255,28 @@ ORDER BY
 						</cellContents>
 					</crosstabTotalColumnHeader>
 				</columnGroup>
-				<measure name="ClientsMeasure" class="java.lang.Integer" calculation="DistinctCount">
-					<measureExpression><![CDATA[$F{client_NAME}]]></measureExpression>
+				<measure name="EarningsMeasure" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$F{Earnings}]]></measureExpression>
 				</measure>
 				<crosstabCell width="119" height="25">
 					<cellContents>
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textField>
+						<textField pattern="$#,##0.00">
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="119" height="25" uuid="5bfa59b8-ae84-4e08-8831-664c7225f660"/>
-							<textElement verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$V{EarningsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="119" height="25" rowTotalGroup="department_NAME">
+				<crosstabCell width="119" height="25" rowTotalGroup="jobsubcategory_SubCategory">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textField>
-							<reportElement style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="119" height="25" uuid="2b43f4c2-1b27-4be5-8b07-1041929be758"/>
-							<textElement verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
+						<textField pattern="$#,##0.00">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="119" height="25" uuid="2b43f4c2-1b27-4be5-8b07-1041929be758"/>
+							<textFieldExpression><![CDATA[$V{EarningsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -322,20 +287,18 @@ ORDER BY
 						</box>
 						<textField pattern="$#,##0.00">
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="122" height="25" uuid="5135114d-e24e-45dc-a6ea-af3460aa108d"/>
-							<textElement verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$V{EarningsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="122" rowTotalGroup="department_NAME" columnTotalGroup="Date_Period">
+				<crosstabCell width="122" rowTotalGroup="jobsubcategory_SubCategory" columnTotalGroup="Date_Period">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField pattern="$#,##0.00">
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="122" height="25" uuid="2bc2f6e0-630b-4f7b-a7c3-ae5e9d96b553"/>
-							<textElement verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$V{EarningsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
