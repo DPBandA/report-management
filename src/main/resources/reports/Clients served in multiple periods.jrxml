@@ -288,7 +288,7 @@ ORDER BY
 						</cellContents>
 					</crosstabTotalColumnHeader>
 				</columnGroup>
-				<measure name="ClientsMeasure" class="java.lang.Integer" calculation="DistinctCount">
+				<measure name="ClientsMeasure" class="java.lang.Integer" calculation="Count">
 					<measureExpression><![CDATA[$F{client_NAME}]]></measureExpression>
 				</measure>
 				<crosstabCell width="119" height="25">
@@ -320,7 +320,7 @@ ORDER BY
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textField pattern="$#,##0.00">
+						<textField>
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="122" height="25" uuid="5135114d-e24e-45dc-a6ea-af3460aa108d"/>
 							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
@@ -332,7 +332,7 @@ ORDER BY
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textField pattern="$#,##0.00">
+						<textField>
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="122" height="25" uuid="2bc2f6e0-630b-4f7b-a7c3-ae5e9d96b553"/>
 							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$V{ClientsMeasure}]]></textFieldExpression>
