@@ -81,7 +81,7 @@ WHERE
 	 jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod1} 
 	 AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod1} 
 	 AND ( 
-	 classification.`NAME` = 'Earning - Client Service') 
+	 classification.`NAME` = 'Earning - Client Services Programme') 
 	 AND ( 
 	 jobstatusandtracking.`WORKPROGRESS` <> 'Cancelled') 
 	 AND ( 
