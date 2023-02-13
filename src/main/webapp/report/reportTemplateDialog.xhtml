@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Report Management (RM) 
+Copyright (C) 2022  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -35,8 +35,9 @@ Email: info@dpbennett.com.jm
         <link rel="stylesheet" href="../css/main.css" />  
     </h:head>
     <h:body >  
-        <ui:include src="../common/longProcessDialog.xhtml"/>  
-        <ui:include src="../common/commonDialogs.xhtml"/>           
+        
+        <ui:include src="../common/commonDialogs.xhtml"/>     
+        
         <h:form id="reportTemplateDialogForm">        
 
             <p:growl id="report_template_growl" life="5000" showDetail="true"/>
@@ -45,30 +46,33 @@ Email: info@dpbennett.com.jm
                 <p:toolbarGroup>
                     <p:commandButton value="Ok"
                                      actionListener="#{reportManager.saveCurrentReport}"
-                                     onstart="PF('longProcessDialogVar').show();"
-                                     oncomplete="PF('longProcessDialogVar').hide()"
-                                     icon="ui-icon ui-icon-check"
+                                     icon="pi pi-check"
                                      update="report_template_growl"
                                      process="@form"/>
                     <p:spacer width="5" />
                     <p:commandButton value="Cancel"
                                      actionListener="#{reportManager.closeDialog}"
-                                     oncomplete="PF('longProcessDialogVar').hide();"
                                      immediate="true"
-                                     icon="ui-icon ui-icon-close" />            
+                                     icon="pi pi-times" />            
                 </p:toolbarGroup>
             </p:toolbar>
 
             <p:tabView style="margin-bottom: 1px;margin-bottom: 1px;" >
                 <p:tab title="General" >   
                     <h:panelGrid columns="2">
-                        <p:outputLabel for="reportActive" value="Active:" style="font-weight: bold;" />               
+                        <p:outputLabel for="reportActive" value="Active" style="font-weight: bold;" />               
                         <p:selectBooleanCheckbox id="reportActive"
                                                  style="vertical-align: middle"
                                                  value="#{reportManager.currentReport.active}" />                       
 
 
-                        <h:outputText value="Category:" style="font-weight: bold;" />
+                        <h:outputText value="Name" style="font-weight: bold;" />
+                        <p:inputText value="#{reportManager.currentReport.name}"
+                                     style="width: 300px;"
+                                     id="reportName" 
+                                     validator="requiredFieldValidator" />
+                        
+                        <h:outputText value="Category" style="font-weight: bold;" />
                         <p:selectOneMenu value="#{reportManager.currentReport.category}" 
                                          id="reportCategory" >
 
@@ -78,13 +82,7 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Name:" style="font-weight: bold;" />
-                        <p:inputText value="#{reportManager.currentReport.name}"
-                                     style="width: 300px;"
-                                     id="reportName" 
-                                     validator="requiredFieldValidator" /> 
-
-                        <h:outputText value="Report template:" style="font-weight: bold;" />                            
+                        <h:outputText value="Report template" style="font-weight: bold;" />                            
                         <h:panelGroup>
                             <h:panelGrid columns="2">                            
                                 <p:inputText value="#{reportManager.currentReport.reportFileTemplate}"
@@ -97,7 +95,7 @@ Email: info@dpbennett.com.jm
                             </h:panelGrid>
                         </h:panelGroup>
 
-                        <h:outputText value="Report template MIME type:" style="font-weight: bold;" />                   
+                        <h:outputText value="Report template MIME type" style="font-weight: bold;" />                   
                         <p:selectOneMenu value="#{reportManager.currentReport.reportFileMimeType}" 
                                          id="reportFileMimeType" >
 
@@ -107,13 +105,13 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Report output file:" style="font-weight: bold;" />
+                        <h:outputText value="Report output file" style="font-weight: bold;" />
                         <p:inputText value="#{reportManager.currentReport.reportFile}"
                                      style="width: 300px;"
                                      id="reportFile" 
                                      validator="requiredFieldValidator" />
 
-                        <h:outputText value="Report output MIME type:" style="font-weight: bold;" />                   
+                        <h:outputText value="Report output MIME type" style="font-weight: bold;" />                   
                         <p:selectOneMenu value="#{reportManager.currentReport.reportOutputFileMimeType}"                                         
                                          id="reportOutputFileMimeType" >
 
@@ -123,7 +121,7 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Description:" style="font-weight: bold;" />
+                        <h:outputText value="Description" style="font-weight: bold;" />
                         <p:inputTextarea  value="#{reportManager.currentReport.description}"
                                           id="reportDescription"
                                           maxlength="1000"
@@ -141,12 +139,14 @@ Email: info@dpbennett.com.jm
                     <p:panel header="Date period" style="margin-top: 1px;margin-bottom: 1px;">
                         <h:panelGrid columns="4" cellpadding="5">
 
-                            <p:outputLabel for="datePeriodRequired" value="Required:" style="font-weight: bold;" />               
+                            <p:outputLabel for="datePeriodRequired" value="Required" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="datePeriodRequired"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.datePeriodRequired}" />
 
-                            <p:outputLabel for="showDateField" value="Show date field:" style="font-weight: bold;" />               
+                            <p:outputLabel for="showDateField" 
+                                           value="Show date field" 
+                                           style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="showDateField"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.showDateField}" />
@@ -155,10 +155,8 @@ Email: info@dpbennett.com.jm
                         <p:toolbar style="margin-bottom: 1px;">
                             <p:toolbarGroup align="left">
                                 <p:commandButton value="New"
-                                                 icon="ui-icon-plus" 
+                                                 icon="pi pi-plus" 
                                                  title="Add new date period"
-                                                 onstart="PF('longProcessDialogVar').show();" 
-                                                 oncomplete="PF('longProcessDialogVar').hide();"
                                                  actionListener="#{reportManager.createNewDatePeriod}" 
                                                  process="@this" >
 
@@ -203,11 +201,9 @@ Email: info@dpbennett.com.jm
                             </p:column>
 
                             <p:column style="width:32px" >
-                                <p:menuButton icon="ui-icon-pencil" title="Edit or delete date period">
+                                <p:menuButton icon="pi pi-pencil" title="Edit or delete date period">
                                     <p:menuitem value="Edit"
-                                                icon="ui-icon-pencil" 
-                                                onstart="PF('longProcessDialogVar').show();"   
-                                                oncomplete="PF('longProcessDialogVar').hide();"                                  
+                                                icon="pi pi-pencil"                                   
                                                 actionListener="#{reportManager.editDatePeriod}"  
                                                 process="@this"                             
                                                 title="View or edit this date period's detail">  
@@ -222,9 +218,7 @@ Email: info@dpbennett.com.jm
 
                                     <p:menuitem  
                                         value="Delete"
-                                        icon="ui-icon-trash" 
-                                        onstart="PF('longProcessDialogVar').show();"    
-                                        oncomplete="PF('longProcessDialogVar').hide();"                                            
+                                        icon="pi pi-trash"                                          
                                         process="@this"
                                         update="datePeriodsTable"
                                         title="Delete this date period">
@@ -240,10 +234,8 @@ Email: info@dpbennett.com.jm
                         <p:toolbar style="margin-top: 1px;">
                             <p:toolbarGroup align="left">
                                 <p:commandButton value="New"
-                                                 icon="ui-icon-plus" 
+                                                 icon="pi pi-plus" 
                                                  title="Add new date period"
-                                                 onstart="PF('longProcessDialogVar').show();" 
-                                                 oncomplete="PF('longProcessDialogVar').hide();"
                                                  actionListener="#{reportManager.createNewDatePeriod}" 
                                                  process="@this" >
 
@@ -258,12 +250,12 @@ Email: info@dpbennett.com.jm
 
                     <p:panel header="Department" style="margin-top: 1px;margin-bottom: 1px;">
                         <h:panelGrid columns="2">
-                            <p:outputLabel for="departmentRequired" value="Required:" style="font-weight: bold;" />               
+                            <p:outputLabel for="departmentRequired" value="Required" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="departmentRequired"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.departmentRequired}" /> 
 
-                            <h:outputText value="Default department(s):" />       
+                            <h:outputText value="Default department(s)" />       
                             <p:autoComplete id="departments"
                                             var="department"   
                                             value="#{reportManager.currentReport.departments}"
@@ -283,7 +275,7 @@ Email: info@dpbennett.com.jm
                             </p:autoComplete>
 
                             <ui:remove>
-                                <h:outputText value="Department fields(s):" />       
+                                <h:outputText value="Department fields(s)" />       
                                 <p:autoComplete id="departmentFields"
                                                 var="department"   
                                                 value="#{reportManager.currentReport.departments}"
@@ -307,12 +299,12 @@ Email: info@dpbennett.com.jm
                     </p:panel>
                     <p:panel header="Employee" style="margin-top: 1px;margin-bottom: 1px;">
                         <h:panelGrid columns="2">
-                            <p:outputLabel for="employeeRequired" value="Required:" style="font-weight: bold;" />               
+                            <p:outputLabel for="employeeRequired" value="Required" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="employeeRequired"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.employeeRequired}" />
 
-                            <h:outputText value="Default employee(s):" />       
+                            <h:outputText value="Default employee(s)" />       
                             <p:autoComplete id="employees"
                                             var="employee"   
                                             value="#{reportManager.currentReport.employees}"
@@ -335,12 +327,12 @@ Email: info@dpbennett.com.jm
 
                     <p:panel header="Client" style="margin-top: 1px;margin-bottom: 1px;">
                         <h:panelGrid columns="2">
-                            <p:outputLabel for="clientRequired" value="Required:" style="font-weight: bold;" />               
+                            <p:outputLabel for="clientRequired" value="Required" style="font-weight: bold;" />               
                             <p:selectBooleanCheckbox id="clientRequired"
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.clientRequired}" />
 
-                            <h:outputText value="Default clients(s):" />       
+                            <h:outputText value="Default clients(s)" />       
                             <p:autoComplete id="clients"
                                             var="client"   
                                             value="#{reportManager.currentReport.clients}"
@@ -367,17 +359,14 @@ Email: info@dpbennett.com.jm
                 <p:toolbarGroup>
                     <p:commandButton value="Ok"
                                      actionListener="#{reportManager.saveCurrentReport}"
-                                     onstart="PF('longProcessDialogVar').show();"
-                                     oncomplete="PF('longProcessDialogVar').hide()"
-                                     icon="ui-icon ui-icon-check"
+                                     icon="pi pi-check"
                                      update="report_template_growl"
                                      process="@form"/>
                     <p:spacer width="5" />
                     <p:commandButton value="Cancel"
                                      actionListener="#{reportManager.closeDialog}"
-                                     oncomplete="PF('longProcessDialogVar').hide();"
                                      immediate="true"
-                                     icon="ui-icon ui-icon-close" />            
+                                     icon="pi pi-times" />            
                 </p:toolbarGroup>
             </p:toolbar> 
         </h:form> 

@@ -42,9 +42,11 @@
      phonenumber.`LOCALNUMBER` AS phonenumber_LOCALNUMBER,
      internet.`EMAIL1` AS internet_EMAIL1,
      department.`NAME` AS department_NAME,
-     jobstatusandtracking.`DATESUBMITTED` AS jobstatusandtracking_DATESUBMITTED
+     jobstatusandtracking.`DATESUBMITTED` AS jobstatusandtracking_DATESUBMITTED,
+     client. `ACCOUNTINGID` AS accounting_ID
 FROM
-     `client` client INNER JOIN `client_address` client_address ON client.`ID` = client_address.`Client_ID`
+     `client` client 
+     INNER JOIN `client_address` client_address ON client.`ID` = client_address.`Client_ID`
      INNER JOIN `address` address ON client_address.`addresses_ID` = address.`ID`
      INNER JOIN `client_contact` client_contact ON client.`ID` = client_contact.`Client_ID`
      INNER JOIN `job` job ON client.`ID` = job.`CLIENT_ID`
@@ -59,9 +61,10 @@ WHERE
      jobstatusandtracking.`DATESUBMITTED` >= $P{startOfPeriod1}
 AND jobstatusandtracking.`DATESUBMITTED` <= $P{endOfPeriod1}
 AND  client.`NAME` NOT LIKE '%Bureau%'
+AND  client.`NAME` NOT LIKE '%National Compliance and Regulatory Authority%'
 AND  (department.`NAME` LIKE '%Inspectorate%')
 
-GROUP BY address.`ADDRESSLINE1`
+GROUP BY client.`ID`, address.`ID`, contact.`ID`
 
 ORDER BY
      department.`NAME`,
@@ -136,6 +139,10 @@ ORDER BY
 	<field name="jobstatusandtracking_DATESUBMITTED" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="jobstatusandtracking_DATESUBMITTED"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="jobstatusandtracking"/>
+	</field>
+	<field name="accounting_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="accounting_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="client"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -229,14 +236,14 @@ ORDER BY
 		<band height="18" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="2350" height="18" uuid="33e7ddf2-1de6-4301-a2e2-c6a51be75a09"/>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="320" y="0" width="176" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="ef99faed-6c45-41ad-8c29-4bea78f09886"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{client_NAME}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="709" y="0" width="231" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0432cfc8-afb0-4c3e-b9a5-01e5d2281a2d"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -244,7 +251,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{contact_FIRSTNAME} + " " +  $F{contact_LASTNAME}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="496" y="0" width="213" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="938b981a-e048-49b9-ac2d-af4995eb1800"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -254,7 +261,7 @@ ORDER BY
 + " " + $F{address_CITY} + " "
 + ($F{address_STATEORPROVINCE} == null ? " " : $F{address_STATEORPROVINCE})]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="940" y="0" width="433" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="923e6101-b40e-4b5b-a11a-dd43aa126eb2"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -262,7 +269,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{phonenumber_LOCALNUMBER}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="1373" y="0" width="318" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b7a99667-8385-4c10-96fc-73df1d16f632"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
@@ -270,7 +277,7 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{internet_EMAIL1}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="320" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="97cc292b-2107-4ef0-bf74-04ae30548595"/>
 					<textElement>
 						<font fontName="SansSerif" size="12"/>
