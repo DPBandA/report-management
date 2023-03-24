@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2022  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -29,7 +29,7 @@ Email: info@dpbennett.com.jm
         <p:panel header="Report Detail" id="reportDetailPanel" style="margin-bottom: 1px;">
             <h:panelGrid columns="2" cellspacing="10">
 
-                <h:outputLabel value="Category" />
+                <h:outputLabel for="reportCategory" value="Category" />
                 <p:selectOneMenu value="#{reportManager.reportCategory}" 
                                  id="reportCategory" >
 
@@ -42,7 +42,7 @@ Email: info@dpbennett.com.jm
 
                 </p:selectOneMenu>
 
-                <h:outputLabel value="Report"/>    
+                <h:outputLabel for="report" value="Report"/>    
                 <h:panelGroup>
                     <p:autoComplete var="report"      
                                     id="report"
@@ -66,14 +66,14 @@ Email: info@dpbennett.com.jm
                     <p:watermark value="find/select a report" for="report" />
                 </h:panelGroup>
 
-                <h:outputLabel value="Description" />
+                <h:outputLabel for="reportDescription" value="Description" />
                 <p:inputTextarea  value="#{reportManager.selectedReport.description}"
                                   id="reportDescription"
                                   maxlength="1000"
                                   autoResize="false"
                                   readonly="true"
                                   rows="4"
-                                  style="width:175%;background: lightyellow;" />                
+                                  style="width:175%;background: lightyellow;color: blue;font-weight: bold;" />                
 
             </h:panelGrid>
         </p:panel>
@@ -84,7 +84,7 @@ Email: info@dpbennett.com.jm
                      rendered="#{reportManager.selectedReport.departmentRequired}">
 
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Department 1" />
+                    <h:outputLabel for="departments" value="Department 1" />
                     <p:autoComplete id="departments"
                                     var="department"   
                                     value="#{reportManager.reportingDepartment1}"
@@ -95,7 +95,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     size="40"
                                     scrollHeight="200"  
-                                    completeMethod="#{humanResourceManager.completeActiveDepartment}" >
+                                    completeMethod="#{systemManager.completeActiveDepartment}" >
 
                         <p:ajax event="itemSelect"
                                 update="departments"
@@ -110,7 +110,7 @@ Email: info@dpbennett.com.jm
                      style="margin-bottom: 1px;"
                      rendered="#{reportManager.selectedReport.employeeRequired}">
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Employee 1" />
+                    <h:outputLabel for="employees" value="Employee 1" />
                     <p:autoComplete var="employee"   
                                     id="employees"
                                     value="#{reportManager.reportEmployee1}"
@@ -121,7 +121,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     scrollHeight="200"  
                                     multiple="false"
-                                    completeMethod="#{humanResourceManager.completeActiveEmployee}" >
+                                    completeMethod="#{systemManager.completeActiveEmployee}" >
 
                         <p:ajax event="itemSelect"
                                 update="employees"
@@ -137,7 +137,7 @@ Email: info@dpbennett.com.jm
                      rendered="#{reportManager.selectedReport.clientRequired}">
 
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Client 1" />
+                    <h:outputLabel for="clients" value="Client 1" />
                     <p:autoComplete id="clients"
                                     var="client"   
                                     value="#{reportManager.reportingClient1}"
@@ -148,7 +148,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     size="40"
                                     scrollHeight="200"  
-                                    completeMethod="#{clientManager.completeActiveClient}" >
+                                    completeMethod="#{systemManager.completeActiveClient}" >
 
                         <p:ajax event="itemSelect"
                                 update="clients"
@@ -165,9 +165,11 @@ Email: info@dpbennett.com.jm
                 <h:panelGrid columns="6" > 
 
 
-                    <h:outputText value="Date field" 
-                                  rendered="#{reportManager.selectedReport.showDateField}"/>
+                    <h:outputLabel value="Date field" 
+                                   for="dateField"
+                                   rendered="#{reportManager.selectedReport.showDateField}"/>
                     <p:selectOneMenu value="#{reportManager.reportingDatePeriod1.dateField}" 
+                                     id="dateField"
                                      rendered="#{reportManager.selectedReport.showDateField}">
 
                         <p:ajax 
@@ -183,9 +185,11 @@ Email: info@dpbennett.com.jm
                     <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
                     <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
 
-                    <h:outputText value="#{reportManager.reportingDatePeriod1.initDatePeriod.label}" 
-                                  rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"/>     
+                    <h:outputLabel value="#{reportManager.reportingDatePeriod1.initDatePeriod.label}" 
+                                   for="datePeriod1"
+                                   rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"/>     
                     <p:selectOneMenu value= "#{reportManager.reportingDatePeriod1.initDatePeriod.name}" 
+                                     id="datePeriod1"
                                      rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" >
                         <p:ajax 
                             global="true"
@@ -196,8 +200,11 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputText value="Start" rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
+                    <h:outputLabel value="Start" 
+                                   for="startDate1"
+                                   rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod1.initDatePeriod.startDate}"
+                                id="startDate1"
                                 rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"
                                 disabled="#{reportManager.reportingDatePeriod1.initDatePeriod.startDateDisabled}"
                                 navigator="true"
@@ -208,9 +215,12 @@ Email: info@dpbennett.com.jm
                                 update="export1,export2,generalReportDatePeriods" />
                     </p:calendar>
 
-                    <h:outputText value="End" rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
+                    <h:outputLabel value="End" 
+                                   for="endDate1"                                  
+                                   rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod1.initDatePeriod.endDate}"
                                 rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"
+                                id="endDate1"
                                 disabled="#{reportManager.reportingDatePeriod1.initDatePeriod.endDateDisabled}"
                                 navigator="true"
                                 pattern="MMM dd, yyyy" >
@@ -220,9 +230,11 @@ Email: info@dpbennett.com.jm
                                 update="export1,export2,generalReportDatePeriods" />
                     </p:calendar>
 
-                    <h:outputText value="#{reportManager.reportingDatePeriod2.initDatePeriod.label}" 
-                                  rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />     
+                    <h:outputLabel value="#{reportManager.reportingDatePeriod2.initDatePeriod.label}" 
+                                   for="datePeriod2"
+                                   rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />     
                     <p:selectOneMenu value= "#{reportManager.reportingDatePeriod2.initDatePeriod.name}" 
+                                     id="datePeriod2"
                                      rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" >
 
                         <p:ajax global="true"
@@ -233,8 +245,11 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputText value="Start" rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
+                    <h:outputLabel value="Start" 
+                                   for="startPeriod2"                                   
+                                   rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod2.initDatePeriod.startDate}"
+                                id="startPeriod2"
                                 rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}"
                                 disabled="#{reportManager.reportingDatePeriod2.initDatePeriod.startDateDisabled}"
                                 navigator="true"
@@ -245,9 +260,12 @@ Email: info@dpbennett.com.jm
                                 update="export1,export2,generalReportDatePeriods" />
                     </p:calendar>
 
-                    <h:outputText value="End" rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
+                    <h:outputLabel value="End" 
+                                   for="endDate2"
+                                   rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod2.initDatePeriod.endDate}"
                                 rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}"
+                                id="endDate2"
                                 disabled="#{reportManager.reportingDatePeriod2.initDatePeriod.endDateDisabled}"
                                 navigator="true"
                                 pattern="MMM dd, yyyy" >
@@ -257,9 +275,11 @@ Email: info@dpbennett.com.jm
                                 update="export1,export2,generalReportDatePeriods" />
                     </p:calendar>
 
-                    <h:outputText value="#{reportManager.reportingDatePeriod3.initDatePeriod.label}" 
-                                  rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />     
+                    <h:outputLabel value="#{reportManager.reportingDatePeriod3.initDatePeriod.label}"
+                                   for="datePeriod3"
+                                   rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />     
                     <p:selectOneMenu value= "#{reportManager.reportingDatePeriod3.initDatePeriod.name}" 
+                                     id="datePeriod3"
                                      rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" >
 
                         <p:ajax global="true"
@@ -271,9 +291,12 @@ Email: info@dpbennett.com.jm
                     </p:selectOneMenu>
 
 
-                    <h:outputText value="Start" rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
+                    <h:outputLabel value="Start" 
+                                   for="startPeriod3"                                  
+                                   rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod3.initDatePeriod.startDate}"
                                 rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}"
+                                id="startPeriod3"
                                 disabled="#{reportManager.reportingDatePeriod3.initDatePeriod.startDateDisabled}"
                                 navigator="true"
                                 pattern="MMM dd, yyyy" >
@@ -283,8 +306,11 @@ Email: info@dpbennett.com.jm
                                 update="export1,export2,generalReportDatePeriods" />
                     </p:calendar>
 
-                    <h:outputText value="End" rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
+                    <h:outputLabel value="End" 
+                                   for="endPeriod3"
+                                   rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
                     <p:calendar value="#{reportManager.reportingDatePeriod3.initDatePeriod.endDate}"
+                                id="endPeriod3"
                                 rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}"
                                 disabled="#{reportManager.reportingDatePeriod3.initDatePeriod.endDateDisabled}"
                                 navigator="true"
