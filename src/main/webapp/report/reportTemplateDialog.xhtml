@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2022  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -26,18 +26,16 @@ Email: info@dpbennett.com.jm
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="cache-control" content="max-age=0" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="expires" content="0" />
-        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-        <meta http-equiv="pragma" content="no-cache" />
         <title>Report Template</title>
-        <link rel="stylesheet" href="../css/main.css" />  
+        <script type="text/javascript" src="../js/javascripts.js" /> 
+        <h:outputStylesheet library="webjars" name="primeflex/3.2.1/primeflex.min.css" /> 
+        <link rel="stylesheet" href="../css/main.css" />
     </h:head>
-    <h:body >  
-        
+
+    <h:body>  
+
         <ui:include src="../common/commonDialogs.xhtml"/>     
-        
+
         <h:form id="reportTemplateDialogForm">        
 
             <p:growl id="report_template_growl" life="5000" showDetail="true"/>
@@ -66,13 +64,13 @@ Email: info@dpbennett.com.jm
                                                  value="#{reportManager.currentReport.active}" />                       
 
 
-                        <h:outputText value="Name" style="font-weight: bold;" />
+                        <p:outputLabel for="reportName" value="Name" style="font-weight: bold;" />
                         <p:inputText value="#{reportManager.currentReport.name}"
                                      style="width: 300px;"
                                      id="reportName" 
                                      validator="requiredFieldValidator" />
-                        
-                        <h:outputText value="Category" style="font-weight: bold;" />
+
+                        <p:outputLabel for="reportCategory" value="Category" style="font-weight: bold;" />
                         <p:selectOneMenu value="#{reportManager.currentReport.category}" 
                                          id="reportCategory" >
 
@@ -82,7 +80,7 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Report template" style="font-weight: bold;" />                            
+                        <p:outputLabel for="reportFileTemplate" value="Report template" style="font-weight: bold;" />                            
                         <h:panelGroup>
                             <h:panelGrid columns="2">                            
                                 <p:inputText value="#{reportManager.currentReport.reportFileTemplate}"
@@ -95,7 +93,7 @@ Email: info@dpbennett.com.jm
                             </h:panelGrid>
                         </h:panelGroup>
 
-                        <h:outputText value="Report template MIME type" style="font-weight: bold;" />                   
+                        <p:outputLabel for="reportFileMimeType" value="Report template MIME type" style="font-weight: bold;" />                   
                         <p:selectOneMenu value="#{reportManager.currentReport.reportFileMimeType}" 
                                          id="reportFileMimeType" >
 
@@ -105,13 +103,13 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Report output file" style="font-weight: bold;" />
+                        <p:outputLabel for="reportFile" value="Report output file" style="font-weight: bold;" />
                         <p:inputText value="#{reportManager.currentReport.reportFile}"
                                      style="width: 300px;"
                                      id="reportFile" 
                                      validator="requiredFieldValidator" />
 
-                        <h:outputText value="Report output MIME type" style="font-weight: bold;" />                   
+                        <p:outputLabel for="reportOutputFileMimeType" value="Report output MIME type" style="font-weight: bold;" />                   
                         <p:selectOneMenu value="#{reportManager.currentReport.reportOutputFileMimeType}"                                         
                                          id="reportOutputFileMimeType" >
 
@@ -121,7 +119,7 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <h:outputText value="Description" style="font-weight: bold;" />
+                        <p:outputLabel for="reportDescription" value="Description" style="font-weight: bold;" />
                         <p:inputTextarea  value="#{reportManager.currentReport.description}"
                                           id="reportDescription"
                                           maxlength="1000"
@@ -200,7 +198,7 @@ Email: info@dpbennett.com.jm
                                 <h:outputText value="#{datePeriod.initDatePeriod.formattedEndDate}" />
                             </p:column>
 
-                            <p:column style="width:32px" >
+                            <p:column>
                                 <p:menuButton icon="pi pi-pencil" title="Edit or delete date period">
                                     <p:menuitem value="Edit"
                                                 icon="pi pi-pencil"                                   
@@ -255,7 +253,7 @@ Email: info@dpbennett.com.jm
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.departmentRequired}" /> 
 
-                            <h:outputText value="Default department(s)" />       
+                            <p:outputLabel for="departments" value="Default department(s)" />       
                             <p:autoComplete id="departments"
                                             var="department"   
                                             value="#{reportManager.currentReport.departments}"
@@ -266,7 +264,7 @@ Email: info@dpbennett.com.jm
                                             dropdown="true"
                                             scrollHeight="200"  
                                             multiple="true"
-                                            completeMethod="#{humanResourceManager.completeActiveDepartment}" >
+                                            completeMethod="#{systemManager.completeActiveDepartment}" >
 
                                 <p:ajax event="itemSelect"
                                         update="departments"
@@ -275,7 +273,7 @@ Email: info@dpbennett.com.jm
                             </p:autoComplete>
 
                             <ui:remove>
-                                <h:outputText value="Department fields(s)" />       
+                                <p:outputLabel for="departmentFields" value="Department fields(s)" />       
                                 <p:autoComplete id="departmentFields"
                                                 var="department"   
                                                 value="#{reportManager.currentReport.departments}"
@@ -286,7 +284,7 @@ Email: info@dpbennett.com.jm
                                                 dropdown="true"
                                                 scrollHeight="200"  
                                                 multiple="true"
-                                                completeMethod="#{humanResourceManager.completeActiveDepartment}" >
+                                                completeMethod="#{systemManager.completeActiveDepartment}" >
 
                                     <p:ajax event="itemSelect"
                                             update="departments"
@@ -304,7 +302,7 @@ Email: info@dpbennett.com.jm
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.employeeRequired}" />
 
-                            <h:outputText value="Default employee(s)" />       
+                            <p:outputLabel for="employees" value="Default employee(s)" />       
                             <p:autoComplete id="employees"
                                             var="employee"   
                                             value="#{reportManager.currentReport.employees}"
@@ -315,7 +313,7 @@ Email: info@dpbennett.com.jm
                                             dropdown="true"
                                             scrollHeight="200"  
                                             multiple="true"
-                                            completeMethod="#{humanResourceManager.completeActiveEmployee}" >
+                                            completeMethod="#{systemManager.completeActiveEmployee}" >
 
                                 <p:ajax event="itemSelect"
                                         update="employees"
@@ -332,7 +330,7 @@ Email: info@dpbennett.com.jm
                                                      style="vertical-align: middle"
                                                      value="#{reportManager.currentReport.clientRequired}" />
 
-                            <h:outputText value="Default clients(s)" />       
+                            <p:outputLabel for="clients" value="Default clients(s)" />       
                             <p:autoComplete id="clients"
                                             var="client"   
                                             value="#{reportManager.currentReport.clients}"
@@ -343,7 +341,7 @@ Email: info@dpbennett.com.jm
                                             dropdown="false"
                                             scrollHeight="200"  
                                             multiple="true"
-                                            completeMethod="#{clientManager.completeActiveClient}" >
+                                            completeMethod="#{systemManager.completeActiveClient}" >
 
                                 <p:ajax event="itemSelect"
                                         update="clients"
