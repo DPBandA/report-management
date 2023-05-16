@@ -55,6 +55,7 @@ Email: info@dpbennett.com.jm
                                     itemValue="#{report}"
                                     itemLabel="#{report.name}"
                                     converter="activeReportConverter"
+                                    cache="true"
                                     completeMethod="#{reportManager.completeReportByCategoryAndName}" >
 
                         <p:ajax event="itemSelect"
@@ -95,6 +96,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     size="40"
                                     scrollHeight="200"  
+                                    cache="true"
                                     completeMethod="#{systemManager.completeActiveDepartment}" >
 
                         <p:ajax event="itemSelect"
@@ -121,6 +123,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     scrollHeight="200"  
                                     multiple="false"
+                                    cache="true"
                                     completeMethod="#{systemManager.completeActiveEmployee}" >
 
                         <p:ajax event="itemSelect"
@@ -148,6 +151,7 @@ Email: info@dpbennett.com.jm
                                     dropdown="true"
                                     size="40"
                                     scrollHeight="200"  
+                                    cache="true"
                                     completeMethod="#{systemManager.completeActiveClient}" >
 
                         <p:ajax event="itemSelect"
