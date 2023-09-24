@@ -41,7 +41,7 @@ Email: info@dpbennett.com.jm
             <p:growl id="report_template_growl" life="5000" showDetail="true"/>
 
             <p:toolbar style="margin-bottom: 1px;">
-                <p:toolbarGroup>
+                <p:toolbarGroup align="left">
                     <p:commandButton value="Ok"
                                      actionListener="#{reportManager.saveCurrentReport}"
                                      icon="pi pi-check"
@@ -53,6 +53,14 @@ Email: info@dpbennett.com.jm
                                      immediate="true"
                                      icon="pi pi-times" />            
                 </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
+                </p:toolbarGroup>
+
             </p:toolbar>
 
             <p:tabView style="margin-bottom: 1px;margin-bottom: 1px;" >
@@ -369,6 +377,13 @@ Email: info@dpbennett.com.jm
                                      actionListener="#{reportManager.closeDialog}"
                                      immediate="true"
                                      icon="pi pi-times" />            
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
                 </p:toolbarGroup>
             </p:toolbar> 
         </h:form> 
