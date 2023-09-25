@@ -38,7 +38,7 @@ Email: info@dpbennett.com.jm
 
         <h:form id="reportTemplateDialogForm">        
 
-            <p:growl id="report_template_growl" life="5000" showDetail="true"/>
+            <p:growl id="report_template_growl" life="5000" showDetail="false"/>
 
             <p:toolbar style="margin-bottom: 1px;">
                 <p:toolbarGroup align="left">
@@ -66,20 +66,29 @@ Email: info@dpbennett.com.jm
             <p:tabView style="margin-bottom: 1px;margin-bottom: 1px;" >
                 <p:tab title="General" >   
                     <h:panelGrid columns="2">
-                        <p:outputLabel for="reportActive" value="Active" style="font-weight: bold;" />               
+                        <p:outputLabel for="reportActive" 
+                                       value="Active" 
+                                       style="font-weight: bold;" />               
                         <p:selectBooleanCheckbox id="reportActive"
+                                                 required="true"
                                                  style="vertical-align: middle"
                                                  value="#{reportManager.currentReport.active}" />                       
 
 
-                        <p:outputLabel for="reportName" value="Name" style="font-weight: bold;" />
+                        <p:outputLabel for="reportName" value="Name" 
+                                       style="font-weight: bold;" />
                         <p:inputText value="#{reportManager.currentReport.name}"
-                                     style="width: 300px;"
-                                     id="reportName" 
+                                     id="reportName"    
+                                     maxlength="250"
+                                     required="true"
+                                     requiredMessage="Report Name Required"
                                      validator="requiredFieldValidator" />
 
-                        <p:outputLabel for="reportCategory" value="Category" style="font-weight: bold;" />
+                        <p:outputLabel for="reportCategory" 
+                                       value="Category" 
+                                       style="font-weight: bold;" />
                         <p:selectOneMenu value="#{reportManager.currentReport.category}" 
+                                         required="true"
                                          id="reportCategory" >
 
                             <f:validator validatorId="requiredFieldValidator" />
@@ -88,12 +97,16 @@ Email: info@dpbennett.com.jm
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="reportFileTemplate" value="Report template" style="font-weight: bold;" />                            
+                        <p:outputLabel for="reportFileTemplate" 
+                                       value="Report template" 
+                                       style="font-weight: bold;" />                            
                         <h:panelGroup>
                             <h:panelGrid columns="2">                            
                                 <p:inputText value="#{reportManager.currentReport.reportFileTemplate}"
-                                             style="margin-left: -3px;width: 300px;"
+                                             style="margin-left: -3px;"
                                              id="reportFileTemplate" 
+                                             required="true"
+                                             requiredMessage="Report Template Required"
                                              validator="requiredFieldValidator" />
                                 <p:selectBooleanCheckbox itemLabel="packaged"
                                                          title="Check if this report template is packaged with application"
@@ -101,8 +114,11 @@ Email: info@dpbennett.com.jm
                             </h:panelGrid>
                         </h:panelGroup>
 
-                        <p:outputLabel for="reportFileMimeType" value="Report template MIME type" style="font-weight: bold;" />                   
-                        <p:selectOneMenu value="#{reportManager.currentReport.reportFileMimeType}" 
+                        <p:outputLabel for="reportFileMimeType" 
+                                       value="Report template MIME type" 
+                                       style="font-weight: bold;" />                   
+                        <p:selectOneMenu value="#{reportManager.currentReport.reportFileMimeType}"
+                                         required="true"
                                          id="reportFileMimeType" >
 
                             <f:validator validatorId="requiredFieldValidator" />
