@@ -42,12 +42,18 @@ Email: info@dpbennett.com.jm
                 <h:panelGrid columns="2" cellspacing="5"
                              style="margin-bottom: 1px;margin-top: 1px;">
 
-                    <h:outputLabel for="datePeriodLabel" value="Label" style="font-weight: bold;" />
+                    <p:outputLabel for="datePeriodLabel" 
+                                   value="Label" 
+                                   style="font-weight: bold;" />
                     <p:inputText value="#{reportManager.selectedDatePeriod.label}"
                                  id="datePeriodLabel"
+                                 required="true"
+                                 requiredMessage="Date Period Label Required"
                                  validator="requiredFieldValidator" />
 
-                    <h:outputLabel for="datePeriodName" value="Period" style="font-weight: bold;" />               
+                    <p:outputLabel for="datePeriodName" 
+                                   value="Period" 
+                                   style="font-weight: bold;" />               
                     <p:selectOneMenu value= "#{reportManager.selectedDatePeriod.name}"
                                      id="datePeriodName" >
 
@@ -59,7 +65,9 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputLabel for="datePeriodDateField" value="Field" style="font-weight: bold;" />
+                    <p:outputLabel for="datePeriodDateField" 
+                                   value="Field" 
+                                   style="font-weight: bold;" />
                     <p:selectOneMenu value="#{reportManager.selectedDatePeriod.dateField}"
                                      id="datePeriodDateField">
 
@@ -67,7 +75,9 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputLabel for="startDate" value="Start" style="font-weight: bold;" />
+                    <p:outputLabel for="startDate" 
+                                   value="Start" 
+                                   style="font-weight: bold;" />
                     <p:calendar id="startDate"
                                 value="#{reportManager.selectedDatePeriod.startDate}"                    
                                 size="17"
@@ -76,7 +86,10 @@ Email: info@dpbennett.com.jm
                                 pattern="MMM dd, yyyy" >
                     </p:calendar>
 
-                    <h:outputLabel for="endDate" value="End" style="font-weight: bold;" />
+                    <p:outputLabel 
+                        for="endDate" 
+                        value="End" 
+                        style="font-weight: bold;" />
                     <p:calendar id="endDate"
                                 value="#{reportManager.selectedDatePeriod.endDate}"
                                 size="17"
