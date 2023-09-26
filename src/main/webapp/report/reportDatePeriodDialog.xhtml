@@ -33,7 +33,7 @@ Email: info@dpbennett.com.jm
     </h:head>
     <h:body >  
         <ui:include src="../common/commonDialogs.xhtml"/>           
-        <h:form id="reportDatePeriodDialogForm">        
+        <h:form id="reportDatePeriodDialogForm">   
 
             <p:growl id="report_date_period_growl" life="5000" showDetail="false"/>
 
@@ -55,6 +55,7 @@ Email: info@dpbennett.com.jm
                                    value="Period" 
                                    style="font-weight: bold;" />               
                     <p:selectOneMenu value= "#{reportManager.selectedDatePeriod.name}"
+                                     required="true"
                                      id="datePeriodName" >
 
                         <p:ajax listener="#{reportManager.selectedDatePeriod.initDatePeriod}"
@@ -69,6 +70,7 @@ Email: info@dpbennett.com.jm
                                    value="Field" 
                                    style="font-weight: bold;" />
                     <p:selectOneMenu value="#{reportManager.selectedDatePeriod.dateField}"
+                                     required="true"
                                      id="datePeriodDateField">
 
                         <f:selectItems value="#{reportManager.dateSearchFields}" />
@@ -81,6 +83,8 @@ Email: info@dpbennett.com.jm
                     <p:calendar id="startDate"
                                 value="#{reportManager.selectedDatePeriod.startDate}"                    
                                 size="17"
+                                required="true"
+                                requiredMessage="Start Date Required"
                                 navigator="true" 
                                 disabled="#{reportManager.selectedDatePeriod.startDateDisabled}"
                                 pattern="MMM dd, yyyy" >
@@ -93,6 +97,8 @@ Email: info@dpbennett.com.jm
                     <p:calendar id="endDate"
                                 value="#{reportManager.selectedDatePeriod.endDate}"
                                 size="17"
+                                required="true"
+                                requiredMessage="End Date Required"
                                 navigator="true"
                                 disabled="#{reportManager.selectedDatePeriod.endDateDisabled}"
                                 pattern="MMM dd, yyyy" >

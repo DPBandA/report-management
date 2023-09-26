@@ -48,7 +48,6 @@ Email: info@dpbennett.com.jm
                                     id="report"
                                     forceSelection="true"
                                     dropdown="true"
-                                    size="40"
                                     scrollHeight="200" 
                                     value="#{reportManager.selectedReport}"
                                     title="#{reportManager.selectedReport.description}"
@@ -74,7 +73,7 @@ Email: info@dpbennett.com.jm
                                   autoResize="false"
                                   readonly="true"
                                   rows="4"
-                                  style="width:175%;background: lightyellow;color: blue;font-weight: bold;" />                
+                                  style="width:100%;background: lightyellow;color: blue;font-weight: bold;" />                
 
             </h:panelGrid>
         </p:panel>
@@ -94,7 +93,6 @@ Email: info@dpbennett.com.jm
                                     converter="activeDepartmentConverter"
                                     forceSelection="true"
                                     dropdown="true"
-                                    size="40"
                                     scrollHeight="200"  
                                     cache="true"
                                     completeMethod="#{systemManager.completeActiveDepartment}" >
@@ -149,7 +147,6 @@ Email: info@dpbennett.com.jm
                                     converter="activeClientConverter"
                                     forceSelection="true"
                                     dropdown="true"
-                                    size="40"
                                     scrollHeight="200"  
                                     cache="true"
                                     completeMethod="#{systemManager.completeActiveClient}" >
@@ -166,7 +163,7 @@ Email: info@dpbennett.com.jm
             <p:panel  id="generalReportDatePeriods" header="Date period(s)" 
                       style="margin-bottom: 1px;"
                       rendered="#{reportManager.selectedReport.datePeriodRequired}" >
-                <h:panelGrid columns="6" > 
+                <h:panelGrid columns="2" > 
 
 
                     <h:outputLabel value="Date field" 
