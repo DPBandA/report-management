@@ -292,7 +292,7 @@ ORDER BY
 		<band height="83" splitType="Stretch">
 			<image>
 				<reportElement x="1" y="8" width="170" height="42" uuid="51d1b3d6-34c3-4f8f-a0a3-b8d34a7be147"/>
-				<imageExpression><![CDATA["C:/jasperreports/BSJ Logo - H41.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\jasperreports\\BSJ Logo - H41.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="190" y="2" width="490" height="24" uuid="e4d5de4a-75f4-476e-a6cc-87671a899f43"/>
