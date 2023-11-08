@@ -43,7 +43,7 @@ Email: info@dpbennett.com.jm
                          value="#{reportManager.reportSearchText}"
                          placeholder="Enter search text">
                 <p:ajax event="keyup"
-                        global="false"
+                        global="true"
                         update=":appForm:mainTabView:reportsTable"
                         listener="#{reportManager.doReportSearch}"
                         process="@this"/>
