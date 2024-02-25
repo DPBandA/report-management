@@ -1,0 +1,355 @@
+<!--
+Report Management (RM) 
+Copyright (C) 2024  D P Bennett & Associates Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Email: info@dpbennett.com.jm
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+    <h:head>
+        <ui:include src="../head.xhtml" />
+        <title>Reports</title>
+        <script type="text/javascript" src="../js/javascripts.js" /> 
+        <h:outputStylesheet library="webjars" name="primeflex/3.2.1/primeflex.min.css" /> 
+        <link rel="stylesheet" href="../css/main.css" />
+    </h:head>
+
+    <h:body>  
+
+        <ui:include src="../common/commonDialogs.xhtml"/>     
+
+        <h:form id="reportDialogForm">        
+
+            <p:growl id="report_dialog_growl" life="5000" showDetail="true"/>
+
+            <ui:include src="reportDialogTopToolbar.xhtml"/> 
+
+            <p:panel header="Report criteria" style="margin-bottom: 1px;margin-top: 1px;" >
+                <p:panel header="Report Detail" id="reportDetailPanel" style="margin-bottom: 1px;">
+                    <h:panelGrid columns="2" cellspacing="10">
+
+                        <h:outputLabel for="reportCategory" value="Category" />
+                        <p:selectOneMenu value="#{reportManager.reportCategory}" 
+                                         id="reportCategory" >
+
+                            <p:ajax
+                                listener="#{reportManager.updateReportCategory}"
+                                update="parametersGroup,reportDetailPanel,export1,export2"
+                                process="@this" />
+
+                            <f:selectItems value="#{reportManager.reportCategories}"/>
+
+                        </p:selectOneMenu>
+
+                        <h:outputLabel for="report" value="Report"/>    
+                        <h:panelGroup>
+                            <p:autoComplete var="report"      
+                                            id="report"
+                                            forceSelection="true"
+                                            dropdown="true"
+                                            scrollHeight="200" 
+                                            value="#{reportManager.selectedReport}"
+                                            title="#{reportManager.selectedReport.description}"
+                                            itemValue="#{report}"
+                                            itemLabel="#{report.name}"
+                                            converter="activeReportConverter"
+                                            cache="true"
+                                            completeMethod="#{reportManager.completeReportByCategoryAndName}" >
+
+                                <p:ajax event="itemSelect"
+                                        listener="#{reportManager.updateReport}"
+                                        update="parametersGroup,reportDetailPanel,export1,export2"
+                                        process="@this" />
+
+                            </p:autoComplete>
+                            <p:watermark value="find/select a report" for="report" />
+                        </h:panelGroup>
+
+                        <h:outputLabel for="reportDescription" value="Description" />
+                        <p:inputTextarea  value="#{reportManager.selectedReport.description}"
+                                          id="reportDescription"
+                                          maxlength="1000"
+                                          autoResize="false"
+                                          readonly="true"
+                                          rows="4"
+                                          style="width:100%;background: lightyellow;color: blue;font-weight: bold;" />                
+
+                    </h:panelGrid>
+                </p:panel>
+
+                <h:panelGroup id="parametersGroup" >
+                    <p:panel id="departmentsPanel" header="Department(s)" 
+                             style="margin-bottom: 1px;"
+                             rendered="#{reportManager.selectedReport.departmentRequired}">
+
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="departments" value="Department 1" />
+                            <p:autoComplete id="departments"
+                                            var="department"   
+                                            value="#{reportManager.reportingDepartment1}"
+                                            itemLabel="#{department.name}"
+                                            itemValue="#{department}"
+                                            converter="activeDepartmentConverter"
+                                            forceSelection="true"
+                                            dropdown="true"
+                                            scrollHeight="200"  
+                                            cache="true"
+                                            completeMethod="#{systemManager.completeActiveDepartment}" >
+
+                                <p:ajax event="itemSelect"
+                                        update="departments"
+                                        process="@this" />
+
+                            </p:autoComplete>
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <p:panel id="employeesPanel" header="Employee(s)" 
+                             style="margin-bottom: 1px;"
+                             rendered="#{reportManager.selectedReport.employeeRequired}">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="employees" value="Employee 1" />
+                            <p:autoComplete var="employee"   
+                                            id="employees"
+                                            value="#{reportManager.reportEmployee1}"
+                                            itemLabel="#{employee.name}"
+                                            itemValue="#{employee}"
+                                            converter="activeEmployeeConverter"
+                                            forceSelection="true"
+                                            dropdown="true"
+                                            scrollHeight="200"  
+                                            multiple="false"
+                                            cache="true"
+                                            completeMethod="#{systemManager.completeActiveEmployee}" >
+
+                                <p:ajax event="itemSelect"
+                                        update="employees"
+                                        process="@this" />
+
+                            </p:autoComplete>
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <p:panel id="clientsPanel" header="Clients(s)" 
+                             style="margin-bottom: 1px;"
+                             rendered="#{reportManager.selectedReport.clientRequired}">
+
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="clients" value="Client 1" />
+                            <p:autoComplete id="clients"
+                                            var="client"   
+                                            value="#{reportManager.reportingClient1}"
+                                            itemLabel="#{client.name}"
+                                            itemValue="#{client}"
+                                            converter="activeClientConverter"
+                                            forceSelection="true"
+                                            dropdown="true"
+                                            scrollHeight="200"  
+                                            cache="true"
+                                            completeMethod="#{systemManager.completeActiveClient}" >
+
+                                <p:ajax event="itemSelect"
+                                        update="clients"
+                                        process="@this" />
+
+                            </p:autoComplete>
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <p:panel  id="generalReportDatePeriods" header="Date period(s)" 
+                              style="margin-bottom: 1px;"
+                              rendered="#{reportManager.selectedReport.datePeriodRequired}" >
+                        <h:panelGrid columns="2" > 
+
+
+                            <h:outputLabel value="Date field" 
+                                           for="dateField"
+                                           rendered="#{reportManager.selectedReport.showDateField}"/>
+                            <p:selectOneMenu value="#{reportManager.reportingDatePeriod1.dateField}" 
+                                             id="dateField"
+                                             rendered="#{reportManager.selectedReport.showDateField}">
+
+                                <p:ajax 
+                                    global="true"
+                                    update="export1,export2,generalReportDatePeriods"
+                                    process="@this" />
+
+                                <f:selectItems value="#{reportManager.dateSearchFields}" />
+
+                            </p:selectOneMenu>
+                            <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
+                            <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
+                            <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
+                            <h:outputText value=" "  rendered="#{reportManager.selectedReport.showDateField}" />
+
+                            <h:outputLabel value="#{reportManager.reportingDatePeriod1.initDatePeriod.label}" 
+                                           for="datePeriod1"
+                                           rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"/>     
+                            <p:selectOneMenu value= "#{reportManager.reportingDatePeriod1.initDatePeriod.name}" 
+                                             id="datePeriod1"
+                                             rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" >
+                                <p:ajax 
+                                    global="true"
+                                    update="export1,export2,generalReportDatePeriods"
+                                    process="@this" />
+
+                                <f:selectItems value="#{reportManager.datePeriods}"/>
+
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Start" 
+                                           for="startDate1"
+                                           rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod1.initDatePeriod.startDate}"
+                                        id="startDate1"
+                                        rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"
+                                        disabled="#{reportManager.reportingDatePeriod1.initDatePeriod.startDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+
+                            <h:outputLabel value="End" 
+                                           for="endDate1"                                  
+                                           rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod1.initDatePeriod.endDate}"
+                                        rendered="#{reportManager.reportingDatePeriod1.initDatePeriod.show}"
+                                        id="endDate1"
+                                        disabled="#{reportManager.reportingDatePeriod1.initDatePeriod.endDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+
+                            <h:outputLabel value="#{reportManager.reportingDatePeriod2.initDatePeriod.label}" 
+                                           for="datePeriod2"
+                                           rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />     
+                            <p:selectOneMenu value= "#{reportManager.reportingDatePeriod2.initDatePeriod.name}" 
+                                             id="datePeriod2"
+                                             rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" >
+
+                                <p:ajax global="true"
+                                        update="export1,export2,generalReportDatePeriods"
+                                        process="@this" />
+
+                                <f:selectItems value="#{reportManager.datePeriods}"/>
+
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Start" 
+                                           for="startPeriod2"                                   
+                                           rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod2.initDatePeriod.startDate}"
+                                        id="startPeriod2"
+                                        rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}"
+                                        disabled="#{reportManager.reportingDatePeriod2.initDatePeriod.startDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+
+                            <h:outputLabel value="End" 
+                                           for="endDate2"
+                                           rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod2.initDatePeriod.endDate}"
+                                        rendered="#{reportManager.reportingDatePeriod2.initDatePeriod.show}"
+                                        id="endDate2"
+                                        disabled="#{reportManager.reportingDatePeriod2.initDatePeriod.endDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+
+                            <h:outputLabel value="#{reportManager.reportingDatePeriod3.initDatePeriod.label}"
+                                           for="datePeriod3"
+                                           rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />     
+                            <p:selectOneMenu value= "#{reportManager.reportingDatePeriod3.initDatePeriod.name}" 
+                                             id="datePeriod3"
+                                             rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" >
+
+                                <p:ajax global="true"
+                                        update="export1,export2,generalReportDatePeriods"
+                                        process="@this" />
+
+                                <f:selectItems value="#{reportManager.datePeriods}"/>
+
+                            </p:selectOneMenu>
+
+
+                            <h:outputLabel value="Start" 
+                                           for="startPeriod3"                                  
+                                           rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod3.initDatePeriod.startDate}"
+                                        rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}"
+                                        id="startPeriod3"
+                                        disabled="#{reportManager.reportingDatePeriod3.initDatePeriod.startDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+
+                            <h:outputLabel value="End" 
+                                           for="endPeriod3"
+                                           rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}" />
+                            <p:calendar value="#{reportManager.reportingDatePeriod3.initDatePeriod.endDate}"
+                                        id="endPeriod3"
+                                        rendered="#{reportManager.reportingDatePeriod3.initDatePeriod.show}"
+                                        disabled="#{reportManager.reportingDatePeriod3.initDatePeriod.endDateDisabled}"
+                                        navigator="true"
+                                        pattern="MMM dd, yyyy" >
+                                <p:ajax event="dateSelect"
+                                        update="export1,export2,generalReportDatePeriods" />
+                                <p:ajax event="keyup"
+                                        update="export1,export2,generalReportDatePeriods" />
+                            </p:calendar>
+                        </h:panelGrid>     
+
+                    </p:panel>
+
+                </h:panelGroup>
+
+            </p:panel>
+
+            <ui:include src="reportDialogBottomToolbar.xhtml"/> 
+
+        </h:form>
+
+    </h:body>
+
+</html>

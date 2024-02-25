@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2023  D P Bennett & Associates Limited
+Copyright (C) 2024  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -39,15 +39,17 @@ Email: info@dpbennett.com.jm
 
             </p:commandButton> 
             <p:spacer width="20" />
-            <p:inputText id="reportSearchText" 
-                         value="#{reportManager.reportSearchText}"
-                         placeholder="Enter search text">
-                <p:ajax event="keyup"
-                        global="true"
-                        update=":appForm:mainTabView:reportsTable"
-                        listener="#{reportManager.doReportSearch}"
-                        process="@this"/>
-            </p:inputText>
+            <h:panelGroup>
+                <p:inputText id="reportSearchText" 
+                             value="#{reportManager.reportSearchText}"
+                             placeholder="Enter search text" />                   
+                <p:commandButton id="reportTemplateSearchButton"
+                                 class="search-button"   
+                                 actionListener="#{reportManager.doReportSearch}"
+                                 update=":appForm:mainTabView:reportsTable"
+                                 icon="pi pi-search"
+                                 process="@form" />
+            </h:panelGroup>
         </p:toolbarGroup>
 
         <p:toolbarGroup align="right" style="margin-top: 10px;">
@@ -65,7 +67,7 @@ Email: info@dpbennett.com.jm
                 </p:selectBooleanCheckbox>            
                 <p:tooltip for="activeReportsOnly" value="Check to show active reports only" 
                            showEffect="fade" hideEffect="fade" />
-                              
+
             </h:panelGroup>
             <p:spacer width="15" /> 
         </p:toolbarGroup>
@@ -98,7 +100,7 @@ Email: info@dpbennett.com.jm
             </f:facet>
             <h:outputText value="#{report.category}" />
         </p:column> 
-        
+
         <p:column>
             <f:facet name="header">
                 <h:outputText value="Description"/>
@@ -107,8 +109,8 @@ Email: info@dpbennett.com.jm
         </p:column> 
 
         <p:column>
-            <p:commandButton title="View or edit report"   
-                             actionListener="#{reportManager.editReport}"
+            <p:commandButton title="View or edit report template"   
+                             actionListener="#{reportManager.editReportTemplate}"
                              global="true"
                              process="@this"
                              icon="pi pi-pencil">

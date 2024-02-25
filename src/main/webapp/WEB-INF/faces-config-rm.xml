@@ -9,7 +9,7 @@
         <converter-class>jm.com.dpbennett.rm.converter.ReportConverter</converter-class>
     </converter>
     
-     <converter>
+    <converter>
         <converter-id>activeReportConverter</converter-id>
         <converter-class>jm.com.dpbennett.rm.converter.ActiveReportConverter</converter-class>
     </converter>
@@ -19,6 +19,13 @@
         <navigation-case>
             <from-outcome>reportTemplateDialog</from-outcome>
             <to-view-id>/report/reportTemplateDialog.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>reportDialog</from-outcome>
+            <to-view-id>/report/reportDialog.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule> 
     <navigation-rule>
