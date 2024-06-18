@@ -292,13 +292,15 @@ Email: info@dpbennett.com.jm
                                             value="#{reportManager.currentReport.departments}"
                                             itemLabel="#{department.name}"
                                             itemValue="#{department}"
-                                            converter="activeDepartmentConverter"
                                             forceSelection="true"
                                             dropdown="true"
                                             scrollHeight="200"  
                                             multiple="true"
                                             cache="true"
-                                            completeMethod="#{systemManager.completeActiveDepartment}" >
+                                            completeMethod="#{humanResourceManager.completeActiveDepartment}" >
+
+                                <f:converter converterId="activeDepartmentConverter"/>
+                                <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
                                         update="departments"
@@ -313,13 +315,15 @@ Email: info@dpbennett.com.jm
                                                 value="#{reportManager.currentReport.departments}"
                                                 itemLabel="#{department.name}"
                                                 itemValue="#{department}"
-                                                converter="activeDepartmentConverter"
                                                 forceSelection="true"
                                                 dropdown="true"
                                                 scrollHeight="200"  
                                                 multiple="true"
                                                 cache="true"
-                                                completeMethod="#{systemManager.completeActiveDepartment}" >
+                                                completeMethod="#{humanResourceManager.completeActiveDepartment}" >
+
+                                    <f:converter converterId="activeDepartmentConverter"/>
+                                    <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                     <p:ajax event="itemSelect"
                                             update="departments"
@@ -349,7 +353,10 @@ Email: info@dpbennett.com.jm
                                             scrollHeight="200"  
                                             multiple="true"
                                             cache="true"
-                                            completeMethod="#{systemManager.completeActiveEmployee}" >
+                                            completeMethod="#{humanResourceManager.completeActiveEmployee}" >
+
+                                <f:converter converterId="activeEmployeeConverter"/>
+                                <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
                                         update="employees"
@@ -372,13 +379,15 @@ Email: info@dpbennett.com.jm
                                             value="#{reportManager.currentReport.clients}"
                                             itemLabel="#{client.name}"
                                             itemValue="#{client}"
-                                            converter="activeClientConverter"
                                             forceSelection="true"
                                             dropdown="false"
                                             scrollHeight="200"  
                                             multiple="true"
                                             cache="true"
-                                            completeMethod="#{systemManager.completeActiveClient}" >
+                                            completeMethod="#{clientManager.completeActiveClient}" >
+                                
+                                <f:converter converterId="activeClientConverter"/>
+                                <f:attribute name="em" value="#{clientManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
                                         update="clients"
