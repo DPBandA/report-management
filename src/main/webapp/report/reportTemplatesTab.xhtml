@@ -86,6 +86,16 @@ Email: info@dpbennett.com.jm
         <f:facet name="header">
             Report Templates
         </f:facet>
+        
+        <p:column style="width: 30px;">
+            <f:facet name="header">
+                <p:outputLabel value="Active"/>
+            </f:facet>           
+            <p:selectBooleanCheckbox 
+                style="display: block;text-align: center;"
+                disabled="true"
+                value="#{report.active}" />
+        </p:column>
 
         <p:column>
             <f:facet name="header">
