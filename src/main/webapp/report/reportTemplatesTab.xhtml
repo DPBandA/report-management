@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2024  D P Bennett & Associates Limited
+Copyright (C) 2025  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -35,7 +35,7 @@ Email: info@dpbennett.com.jm
 
                 <p:ajax event="dialogReturn" 
                         listener="#{reportManager.doReportSearch}"
-                        update=":appForm:mainTabView:reportsTable"/>
+                        update=":mainTabViewForm:mainTabView:reportsTable"/>
 
             </p:commandButton> 
             <p:spacer width="20" />
@@ -46,7 +46,7 @@ Email: info@dpbennett.com.jm
                 <p:commandButton id="reportTemplateSearchButton"
                                  class="search-button"   
                                  actionListener="#{reportManager.doReportSearch}"
-                                 update=":appForm:mainTabView:reportsTable"
+                                 update=":mainTabViewForm:mainTabView:reportsTable"
                                  icon="pi pi-search"
                                  process="@form" />
             </h:panelGroup>
@@ -60,7 +60,7 @@ Email: info@dpbennett.com.jm
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeReportsOnly"
                                          value="#{reportManager.isActiveReportsOnly}" >
-                    <p:ajax  update=":appForm:mainTabView:reportsTable"
+                    <p:ajax  update=":mainTabViewForm:mainTabView:reportsTable"
                              listener="#{reportManager.doReportSearch}"
                              event="change"                                      
                              process="@this"/>
@@ -127,7 +127,7 @@ Email: info@dpbennett.com.jm
                 <f:setPropertyActionListener value="#{report}"                                                                    
                                              target="#{reportManager.currentReport}" />
                 <p:ajax event="dialogReturn" 
-                        update=":appForm:mainTabView:reportsTable"/>
+                        update=":mainTabViewForm:mainTabView:reportsTable"/>
 
             </p:commandButton>           
         </p:column>

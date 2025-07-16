@@ -1,6 +1,6 @@
 <!--
 Report Management (RM) 
-Copyright (C) 2024  D P Bennett & Associates Limited
+Copyright (C) 2025  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -24,18 +24,7 @@ Email: info@dpbennett.com.jm
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:menubar id="main_menubar" style="width: 100%;">
-
-        <p:submenu label="System" 
-                   rendered="#{systemManager.user.hasModule('systemManager')}"
-                   icon="pi pi-server">
-
-            <p:menuitem 
-                actionListener="#{systemManager.mainTabView.openTab('System Administration')}" 
-                value="Administration" 
-                icon="pi pi-briefcase" />    
-
-        </p:submenu>
+    <p:menubar id="main_menubar" style="width: 100%;" autoDisplay="false">
 
         <p:submenu label="Reports" 
                    icon="pi pi-chart-bar" >  
@@ -55,6 +44,18 @@ Email: info@dpbennett.com.jm
 
         </p:submenu>    
 
+        <p:divider layout="vertical"/>
+
+        <p:submenu label="System" 
+                   rendered="#{systemManager.user.hasModule('systemManager')}"
+                   icon="pi pi-server">
+
+            <p:menuitem 
+                actionListener="#{systemManager.mainTabView.openTab('System Administration')}" 
+                value="Administration" 
+                icon="pi pi-briefcase" />    
+
+        </p:submenu>
 
     </p:menubar>
 
