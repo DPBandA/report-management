@@ -40,13 +40,13 @@ Email: info@dpbennett.com.jm
 
             <p:toolbar style="margin-bottom: 1px;">
                 <p:toolbarGroup align="left">
-                    <p:commandButton value="Ok"
+                    <p:commandButton value="Save"
                                      actionListener="#{reportManager.saveCurrentReport}"
                                      icon="pi pi-check"
                                      update="report_template_growl"
                                      process="@form"/>
                     <p:spacer width="5" />
-                    <p:commandButton value="Cancel"
+                    <p:commandButton value="Close"
                                      actionListener="#{reportManager.closeDialog}"
                                      immediate="true"
                                      icon="pi pi-times" />            
@@ -401,13 +401,13 @@ Email: info@dpbennett.com.jm
             </p:tabView>
             <p:toolbar >
                 <p:toolbarGroup>
-                    <p:commandButton value="Ok"
+                    <p:commandButton value="Save"
                                      actionListener="#{reportManager.saveCurrentReport}"
                                      icon="pi pi-check"
                                      update="report_template_growl"
                                      process="@form"/>
                     <p:spacer width="5" />
-                    <p:commandButton value="Cancel"
+                    <p:commandButton value="Close"
                                      actionListener="#{reportManager.closeDialog}"
                                      immediate="true"
                                      icon="pi pi-times" />            
