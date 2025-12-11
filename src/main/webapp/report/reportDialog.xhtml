@@ -59,7 +59,8 @@ Email: info@dpbennett.com.jm
 
                         <h:outputLabel for="report" value="Report"/>    
                         <h:panelGroup>
-                            <p:autoComplete var="report"      
+                            <p:autoComplete var="report"  
+                                            escape="false"
                                             id="report"
                                             forceSelection="true"
                                             dropdown="true"
@@ -103,6 +104,7 @@ Email: info@dpbennett.com.jm
                         <h:panelGrid columns="2">
                             <h:outputLabel for="departments" value="Department 1" />
                             <p:autoComplete id="departments"
+                                            escape="false"
                                             var="department"   
                                             value="#{reportManager.reportingDepartment1}"
                                             itemLabel="#{department.name}"
@@ -113,7 +115,7 @@ Email: info@dpbennett.com.jm
                                             cache="true"
                                             completeMethod="#{humanResourceManager.completeActiveDepartment}" >
 
-                                <f:converter converterId="activeDepartmentConverter"/>
+                                <f:converter converterId="departmentConverter"/>
                                 <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
@@ -131,6 +133,7 @@ Email: info@dpbennett.com.jm
                         <h:panelGrid columns="2">
                             <h:outputLabel for="employees" value="Employee 1" />
                             <p:autoComplete var="employee"   
+                                            escape="false"
                                             id="employees"
                                             value="#{reportManager.reportEmployee1}"
                                             itemLabel="#{employee.name}"
@@ -161,6 +164,7 @@ Email: info@dpbennett.com.jm
                         <h:panelGrid columns="2">
                             <h:outputLabel for="clients" value="Client 1" />
                             <p:autoComplete id="clients"
+                                            escape="false"
                                             var="client"   
                                             value="#{reportManager.reportingClient1}"
                                             itemLabel="#{client.name}"

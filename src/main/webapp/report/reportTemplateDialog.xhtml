@@ -288,6 +288,7 @@ Email: info@dpbennett.com.jm
 
                             <p:outputLabel for="departments" value="Default department(s)" />       
                             <p:autoComplete id="departments"
+                                            escape="false"
                                             var="department"   
                                             value="#{reportManager.currentReport.departments}"
                                             itemLabel="#{department.name}"
@@ -299,7 +300,7 @@ Email: info@dpbennett.com.jm
                                             cache="true"
                                             completeMethod="#{humanResourceManager.completeActiveDepartment}" >
 
-                                <f:converter converterId="activeDepartmentConverter"/>
+                                <f:converter converterId="departmentConverter"/>
                                 <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
@@ -311,6 +312,7 @@ Email: info@dpbennett.com.jm
                             <ui:remove>
                                 <p:outputLabel for="departmentFields" value="Department fields(s)" />       
                                 <p:autoComplete id="departmentFields"
+                                                escape="false"
                                                 var="department"   
                                                 value="#{reportManager.currentReport.departments}"
                                                 itemLabel="#{department.name}"
@@ -322,7 +324,7 @@ Email: info@dpbennett.com.jm
                                                 cache="true"
                                                 completeMethod="#{humanResourceManager.completeActiveDepartment}" >
 
-                                    <f:converter converterId="activeDepartmentConverter"/>
+                                    <f:converter converterId="departmentConverter"/>
                                     <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                     <p:ajax event="itemSelect"
@@ -343,6 +345,7 @@ Email: info@dpbennett.com.jm
 
                             <p:outputLabel for="employees" value="Default employee(s)" />       
                             <p:autoComplete id="employees"
+                                            escape="false"
                                             var="employee"   
                                             value="#{reportManager.currentReport.employees}"
                                             itemLabel="#{employee.name}"
@@ -375,6 +378,7 @@ Email: info@dpbennett.com.jm
 
                             <p:outputLabel for="clients" value="Default clients(s)" />       
                             <p:autoComplete id="clients"
+                                            escape="false"
                                             var="client"   
                                             value="#{reportManager.currentReport.clients}"
                                             itemLabel="#{client.name}"
