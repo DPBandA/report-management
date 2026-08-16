@@ -73,7 +73,7 @@ Email: info@dpbennett.com.jm
                                             cache="true"
                                             completeMethod="#{reportManager.completeReportByCategoryAndName}" >
 
-                                <f:converter converterId="activeReportConverter"/>
+                                <f:converter converterId="reportConverter"/>
                                 <f:attribute name="em" value="#{reportManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
@@ -146,7 +146,7 @@ Email: info@dpbennett.com.jm
                                             cache="true"
                                             completeMethod="#{humanResourceManager.completeActiveEmployee}" >
 
-                                <f:converter converterId="activeEmployeeConverter"/>
+                                <f:converter converterId="employeeConverter"/>
                                 <f:attribute name="em" value="#{humanResourceManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
@@ -176,7 +176,7 @@ Email: info@dpbennett.com.jm
                                             cache="true"
                                             completeMethod="#{clientManager.completeActiveClient}" >
 
-                                <f:converter converterId="activeClientConverter"/>
+                                <f:converter converterId="clientConverter"/>
                                 <f:attribute name="em" value="#{clientManager.entityManager1}"/>
 
                                 <p:ajax event="itemSelect"
