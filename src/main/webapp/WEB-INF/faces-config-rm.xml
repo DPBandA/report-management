@@ -10,14 +10,21 @@
             <from-outcome>reportTemplateDialog</from-outcome>
             <to-view-id>/report/reportTemplateDialog.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule> 
+    </navigation-rule>  
+    <navigation-rule>
+        <from-view-id>/index-m.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>reportTemplateDialog-m</from-outcome>
+            <to-view-id>/report/reportTemplateDialog-m.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>reportDialog</from-outcome>
             <to-view-id>/report/reportDialog.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule> 
+    </navigation-rule>   
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -25,7 +32,7 @@
             <to-view-id>/report/reportDatePeriodDialog.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-        
+          
     <managed-bean>
         <managed-bean-name>reportManager</managed-bean-name>
         <managed-bean-class>jm.com.dpbennett.rm.manager.ReportManager</managed-bean-class>

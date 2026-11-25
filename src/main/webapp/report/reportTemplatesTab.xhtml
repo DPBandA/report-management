@@ -31,7 +31,7 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left" >   
             <p:commandButton title="Add new report template"                                  
                              value="New"
-                             actionListener="#{reportManager.createNewReport}"
+                             actionListener="#{reportManager.createNewReport('reportTemplateDialog')}"
                              global="true"
                              process="@this"
                              icon="pi pi-plus">
@@ -124,7 +124,7 @@ Email: info@dpbennett.com.jm
 
         <p:column>
             <p:commandButton title="View or edit report template"   
-                             actionListener="#{reportManager.editReportTemplate}"
+                             actionListener="#{reportManager.editReportTemplate('reportTemplateDialog')}"
                              global="true"
                              process="@this"
                              icon="pi pi-pencil">
